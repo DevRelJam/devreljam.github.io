@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Rahong';
+  src: url('../assets/fonts/Rahong.ttf') format('truetype');
+  font-display: swap;
+}
+
+:root {
+  --bg: #fdf4e9;
+  --paper: #fffaf2;
+  --ink: #1f241f;
+  --muted: #4c574d;
+  --line: #dacdbc;
+  --jam-green: #1f8f50;
+  --jam-green-dark: #15663a;
+  --jam-clay: #d1753f;
+  --white: #ffffff;
+
+  --sans: 'Avenir Next', 'Trebuchet MS', 'Segoe UI', sans-serif;
+  --serif: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+  --logo: 'Rahong', 'Copperplate', 'Papyrus', cursive;
+
+  --shadow-soft: 0 12px 30px rgba(25, 35, 25, 0.09);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --container: 1120px;
+}

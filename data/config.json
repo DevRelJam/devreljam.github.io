@@ -1,0 +1,138 @@
+{
+  "site": {
+    "name": "DevRelJam",
+    "domain": "devreljam.github.io",
+    "url": "https://devreljam.github.io",
+    "language": "en",
+    "tagline": "Where Developer Relations professionals jam, learn, and level up together.",
+    "description": "DevRelJams are first-of-its-kind meetups for experienced DevRel practitioners to exchange wins and missteps, and deepen the craft of developer advocacy, community, and engagement.",
+    "keywords": [
+      "DevRel",
+      "Developer Relations",
+      "Developer Advocacy",
+      "Community",
+      "Tech Meetups",
+      "DevRelJam"
+    ],
+    "brand": {
+      "logo": "assets/images/devreljam-logo.png",
+      "title": "DEVRELJAM",
+      "titleFont": "Rahong",
+      "accent": "#fdf4e9",
+      "favicon": "assets/images/favicon.png"
+    },
+    "seo": {
+      "defaultTitle": "DevRelJam | DevRel Meetups Around Global Tech Conferences",
+      "defaultDescription": "Not a typical tech meetup. DevRelJam brings developer relations professionals together when major tech conferences are already in town.",
+      "author": "Yashraj Nayak",
+      "ogImageAlt": "DevRelJam brand card with event highlights"
+    }
+  },
+  "navigation": [
+    { "label": "About", "href": "#about" },
+    { "label": "Upcoming", "href": "#events" },
+    { "label": "Gallery", "href": "#gallery" },
+    { "label": "Speakers", "href": "#speakers" }
+  ],
+  "hero": {
+    "eyebrow": "DevRel community initiative",
+    "headline": "Developer Relations, in real conversations.",
+    "subheadline": "If world leaders can host important side meetings during UNGA, DevRel teams can definitely jam while they are already in town for major conferences.",
+    "primaryCta": {
+      "label": "See Luma Calendar",
+      "href": "https://luma.com/devreljam"
+    },
+    "secondaryCta": {
+      "label": "Call for Speakers",
+      "href": "https://sessionize.com/devreljam/"
+    },
+    "statCards": [
+      { "label": "Format", "value": "Peer-led jam sessions" },
+      { "label": "Audience", "value": "Experienced DevRel practitioners" },
+      { "label": "Focus", "value": "Advocacy, community, engagement" }
+    ]
+  },
+  "about": {
+    "title": "What is DevRelJam?",
+    "body": "DevRelJams are first-of-its-kind meetups for DevRel professionals. They are not standard tech meetups. They are practical, candid sessions where practitioners share both what worked and what did not, then leave with better judgment for the next initiative.",
+    "highlights": [
+      "Conversations tailored for practitioners who have already operated DevRel programs",
+      "Small-group format that encourages honest takeaways",
+      "Hosted alongside major conferences so attendance is practical"
+    ]
+  },
+  "events": {
+    "title": "Upcoming DevRelJams",
+    "description": "Live event feed powered by Luma.",
+    "calendarUrl": "https://luma.com/devreljam",
+    "embed": {
+      "src": "https://luma.com/embed/calendar/cal-XxuFr8KES5quRte/events?lt=light",
+      "width": "600",
+      "height": "450",
+      "border": "1px solid #bfcbda88",
+      "radius": "4px"
+    }
+  },
+  "gallery": {
+    "title": "From Previous Jams",
+    "description": "Photos from earlier DevRelJam editions.",
+    "images": [
+      {
+        "src": "assets/images/gallery/jam-01.jpg",
+        "alt": "DevRelJam participants in a discussion circle",
+        "caption": "Roundtable peer exchange"
+      },
+      {
+        "src": "assets/images/gallery/jam-02.jpg",
+        "alt": "Speaker sharing lessons with DevRel attendees",
+        "caption": "Field-tested strategies"
+      },
+      {
+        "src": "assets/images/gallery/jam-03.jpg",
+        "alt": "Networking moment during a DevRelJam session",
+        "caption": "Community-first networking"
+      },
+      {
+        "src": "assets/images/gallery/jam-04.jpg",
+        "alt": "Group photo after DevRelJam meetup",
+        "caption": "Built by practitioners"
+      }
+    ]
+  },
+  "speakers": {
+    "title": "Call for Speakers",
+    "description": "Speaker submissions are open on a rolling basis for upcoming DevRelJams.",
+    "cta": {
+      "label": "Apply on Sessionize",
+      "href": "https://sessionize.com/devreljam/"
+    }
+  },
+  "community": {
+    "initiativeBy": {
+      "name": "Yashraj Nayak",
+      "href": "https://www.linkedin.com/in/yashrajnayak"
+    },
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com/company/devreljam"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://instagram.com/devreljam"
+      },
+      {
+        "label": "X",
+        "href": "https://linkedin.com/company/devreljam"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/devreljam"
+      }
+    ]
+  },
+  "footer": {
+    "note": "DevRelJam is built for thoughtful DevRel practitioners who value craft over noise.",
+    "copyright": "DevRelJam"
+  }
+}

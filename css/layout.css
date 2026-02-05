@@ -1,0 +1,44 @@
+.site-header,
+.site-main,
+.site-footer {
+  margin-inline: auto;
+  max-width: var(--container);
+  padding-inline: 20px;
+}
+
+.site-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-block: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(8px);
+}
+
+.site-main {
+  display: grid;
+  gap: 56px;
+  padding-bottom: 72px;
+}
+
+.hero,
+.about,
+.events,
+.gallery,
+.speakers {
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  padding: 26px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 20px;
+  padding-block: 28px 40px;
+}

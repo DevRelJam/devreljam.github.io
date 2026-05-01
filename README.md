@@ -41,6 +41,25 @@ This repository is ready for GitHub Pages:
 
 The `.nojekyll` file is included so GitHub Pages serves static assets directly without Jekyll processing.
 
+## Organization Profile Sync
+
+The GitHub organization profile README is generated from this website's source of truth:
+
+- Source config: `data/config.json`
+- Generator: `scripts/generate-profile-readme.cjs`
+- Workflow: `.github/workflows/sync-profile-readme.yml`
+- Target file: `DevRelJam/.github/profile/README.md`
+
+When website source files change on `main`, the workflow validates `data/config.json`, generates the profile README, and commits to `DevRelJam/.github` only when the generated output differs.
+
+The workflow needs a repository secret named `PROFILE_REPO_TOKEN` in `DevRelJam/devreljam.github.io`. Use a fine-grained GitHub token with read/write contents access to `DevRelJam/.github`.
+
+Run the generator locally with:
+
+```bash
+PROFILE_README_PATH=/tmp/devreljam-profile-readme.md node scripts/generate-profile-readme.cjs
+```
+
 ## Maintenance Checklist
 
 Before each DevRelJam cycle:
@@ -48,5 +67,5 @@ Before each DevRelJam cycle:
 1. Update the current event block in `data/config.json`.
 2. Confirm the Luma calendar and Sessionize links are active.
 3. Refresh `assets/images/event-singapore-2026.png` or add a new event image.
-4. Keep the GitHub org profile README in sync with the current Luma calendar.
+4. Confirm the profile README sync workflow succeeds after the website update.
 5. Check the deployed URL and social preview image after publishing.

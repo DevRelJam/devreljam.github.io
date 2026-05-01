@@ -10,7 +10,7 @@ Most editable site content lives in:
 
 - `data/config.json`
 
-Update this file for event copy, Luma links, city status, speaker CTA copy, social links, and SEO metadata.
+Update this file for event copy, Luma links, Jam format copy, past event cards, city status, speaker CTA copy, social links, and SEO metadata.
 
 ## Run Locally
 
@@ -66,6 +66,6 @@ Before each DevRelJam cycle:
 
 1. Update the current event block in `data/config.json`.
 2. Confirm the Luma calendar and Sessionize links are active.
-3. Refresh `assets/images/event-singapore-2026.png` or add a new event image.
+3. Refresh current and past event images in `assets/images/` when a new Jam is added.
 4. Confirm the profile README sync workflow succeeds after the website update.
 5. Check the deployed URL and social preview image after publishing.

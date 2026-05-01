@@ -83,6 +83,7 @@ function generateProfileReadme(config) {
   const speakers = config.speakers || {};
   const community = config.community || {};
   const cities = config.cities?.items || [];
+  const pastEvents = events.past?.items || [];
 
   const websiteUrl = ensureTrailingSlash(site.url);
   const lumaUrl = events.calendarUrl;
@@ -105,6 +106,13 @@ function generateProfileReadme(config) {
   const highlights = list((about.highlights || []).map((item) => `**${item.title}:** ${item.body}`));
   const agenda = list(currentEvent.agenda || []);
   const cityTable = table(cities);
+  const pastTable = pastEvents.length
+    ? [
+        '| Jam | Date | Location |',
+        '| --- | --- | --- |',
+        ...pastEvents.map((event) => `| [${escapeTableCell(event.name)}](${event.url}) | ${escapeTableCell(event.date)} | ${escapeTableCell(event.location)} |`)
+      ].join('\n')
+    : '';
 
   return `<!-- AUTO-GENERATED: Edit data/config.json in DevRelJam/devreljam.github.io, then run scripts/generate-profile-readme.cjs. -->
 
@@ -146,7 +154,7 @@ ${config.cities?.description || ''}
 
 ${cityTable}
 
-## How to Get Involved
+${pastTable ? `## Past Jams\n\n${events.past?.description || 'Past DevRelJam editions are tracked from the same website config.'}\n\n${pastTable}\n\n` : ''}## How to Get Involved
 
 - **Attend:** Check the [DevRelJam Luma calendar](${lumaUrl}) for upcoming Jams and RSVP.
 - **Speak:** Submit a practitioner talk or discussion idea through [Sessionize](${sessionizeUrl}).

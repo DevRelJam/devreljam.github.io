@@ -31,6 +31,8 @@
   "navigation": [
     { "label": "About", "href": "#about" },
     { "label": "Upcoming", "href": "#events" },
+    { "label": "Format", "href": "#format" },
+    { "label": "Past", "href": "#past" },
     { "label": "Cities", "href": "#cities" },
     { "label": "Speakers", "href": "#speakers" }
   ],
@@ -48,6 +50,11 @@
       "href": "https://sessionize.com/devreljam/",
       "icon": "mic"
     },
+    "stats": [
+      { "value": "5", "label": "cities mapped" },
+      { "value": "4+", "label": "past Jams tracked" },
+      { "value": "Free", "label": "approval-based RSVP" }
+    ],
     "links": [
       {
         "label": "LinkedIn",
@@ -63,6 +70,41 @@
         "label": "GitHub",
         "href": "https://github.com/devreljam",
         "icon": "github"
+      }
+    ]
+  },
+  "format": {
+    "title": "How Jams Work",
+    "description": "Every Jam is built around a small, useful room: clear agenda, peer-led sessions, candid discussion, and enough community time for the best conversations to continue.",
+    "split": [
+      {
+        "value": "40%",
+        "label": "Practitioner sessions",
+        "body": "Field-tested talks from DevRel, advocacy, community, and adjacent technology leaders."
+      },
+      {
+        "value": "30%",
+        "label": "AMA and discussion",
+        "body": "Candid room-led exchange on programs, metrics, developer audiences, tooling, and mistakes."
+      },
+      {
+        "value": "30%",
+        "label": "Community time",
+        "body": "Intentional networking before, between, and after sessions so the best ideas do not stay on stage."
+      }
+    ],
+    "principles": [
+      {
+        "title": "Curated room",
+        "body": "Registration is free but approval-based so the room stays useful for working practitioners."
+      },
+      {
+        "title": "Conference-adjacent",
+        "body": "Jams are planned when DevRel teams are already near major developer gatherings."
+      },
+      {
+        "title": "Real notes over polish",
+        "body": "The format rewards lessons learned, honest tradeoffs, and operational details."
       }
     ]
   },
@@ -114,6 +156,73 @@
       "height": "420",
       "border": "1px solid var(--border-color)",
       "radius": "16px"
+    },
+    "past": {
+      "title": "Past Jams",
+      "description": "Browse previous DevRelJam editions, agendas, and speaker themes from cities where the community has already gathered.",
+      "highlightUrl": "https://www.linkedin.com/posts/yashrajnayak_kubecon-devreljam-developerrelations-ugcPost-7321035973578948610-xde9/",
+      "items": [
+        {
+          "name": "DevRelJam Bengaluru - April 2025",
+          "city": "Bengaluru",
+          "date": "April 2025",
+          "location": "Bengaluru, India",
+          "url": "https://luma.com/n9xptnma",
+          "image": "assets/images/event-bengaluru-2025.png",
+          "status": "Past event",
+          "summary": "The first DevRelJam gathered experienced practitioners alongside GIDS 2025 for talks, an AMA, and room-led discussion.",
+          "highlights": [
+            "The Devil Is In The Titles by Ram Iyengar",
+            "AMA with James Ward, Ivar Grimstad, and Sourabh Bagrecha",
+            "The Engaged Developer Funnel by Stephen Chin"
+          ]
+        },
+        {
+          "name": "DevRel Jam Hyderabad - August 2025",
+          "city": "Hyderabad",
+          "date": "August 7, 2025",
+          "location": "Hyderabad, India",
+          "url": "https://lu.ma/umwjgbi2",
+          "image": "assets/images/event-hyderabad-2025.png",
+          "status": "Past event",
+          "summary": "A KubeCon India 2025-adjacent Jam designed around duo lightning talks, networking, and a practitioner panel.",
+          "highlights": [
+            "Four lightning talk sessions",
+            "Technology integration showcases",
+            "Panel discussion and networking"
+          ]
+        },
+        {
+          "name": "DevRelJam Singapore - February 2026",
+          "city": "Singapore",
+          "date": "February 26, 2026",
+          "location": "Figma Singapore",
+          "url": "https://luma.com/248dtdi3",
+          "image": "assets/images/event-singapore-feb-2026.png",
+          "status": "Past event",
+          "summary": "A Singapore edition with social impact, DevRel identity, and GenAI-era developer relations on the agenda.",
+          "highlights": [
+            "Social Impact IS Your DevRel Strategy by Annie Mathew",
+            "Hey DevRel, Who Do You Work For? by Donnie Prakoso",
+            "DevRel in the Era of GenAI by Thu Ya Kyaw"
+          ]
+        },
+        {
+          "name": "DevRelJam Bengaluru - April 2026",
+          "city": "Bengaluru",
+          "date": "April 23, 2026",
+          "location": "Bengaluru, India",
+          "url": "https://luma.com/bg8edxm7",
+          "image": "assets/images/event-bengaluru-2026.png",
+          "status": "Past event",
+          "summary": "A GIDS 2026-adjacent edition with practitioner talks, an AMA block, and dinner-time community exchange.",
+          "highlights": [
+            "Business Skills DevRel Pros Should Learn by Atsushi Nakatsugawa",
+            "Helping Developers Discover the Right AI Tools by Nimit Savant",
+            "AMA with James Ward, Mary Grygleski, Brian Benz, and Yashraj Nayak"
+          ]
+        }
+      ]
     }
   },
   "cities": {

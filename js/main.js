@@ -4,8 +4,10 @@ import {
   renderCities,
   renderEvents,
   renderFooter,
+  renderFormat,
   renderHeader,
   renderHero,
+  renderPastEvents,
   renderSpeakers
 } from './modules/render.js';
 import { applySeo } from './modules/seo.js';
@@ -46,6 +48,8 @@ async function boot() {
     renderHero(config);
     renderAbout(config);
     renderEvents(config);
+    renderFormat(config);
+    renderPastEvents(config);
     renderCities(config);
     renderSpeakers(config);
     renderFooter(config);

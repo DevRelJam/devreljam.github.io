@@ -13,6 +13,8 @@ const icons = {
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 22h8"></path></svg>',
   pin:
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
+  spark:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"></path></svg>',
   users:
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>'
 };
@@ -80,7 +82,14 @@ export function renderHero(config) {
     makeActionLink(config.hero.secondaryCta, 'ghost')
   );
 
-  root.replaceChildren(imageWrapper, headline, subheadline, actions, body);
+  const stats = createEl('div', 'hero-stats');
+  (config.hero.stats || []).forEach((item) => {
+    const stat = createEl('div', 'hero-stat');
+    stat.append(createEl('span', 'hero-stat__value', item.value), createEl('span', 'hero-stat__label', item.label));
+    stats.appendChild(stat);
+  });
+
+  root.replaceChildren(imageWrapper, headline, subheadline, actions, body, stats);
 }
 
 export function renderAbout(config) {
@@ -157,6 +166,135 @@ export function renderEvents(config) {
   embedPanel.append(embedTitle, frame);
 
   root.replaceChildren(title, copy, card, embedPanel);
+}
+
+export function renderFormat(config) {
+  const root = qs('#format');
+  const format = config.format;
+  if (!root || !format) return;
+
+  const title = createEl('h2', 'section-title', format.title);
+  const copy = createEl('p', 'section-copy section-copy--center', format.description);
+  const shell = createEl('div', 'format-shell');
+
+  const splitPanel = createEl('div', 'format-panel');
+  splitPanel.appendChild(createEl('h3', '', 'What to expect'));
+
+  const splitList = createEl('div', 'format-split');
+  format.split.forEach((item) => {
+    const row = createEl('article', 'format-split__row');
+    row.append(createEl('span', 'format-split__value', item.value));
+
+    const rowCopy = createEl('div');
+    rowCopy.append(createEl('h4', '', item.label), createEl('p', '', item.body));
+    row.appendChild(rowCopy);
+    splitList.appendChild(row);
+  });
+  splitPanel.appendChild(splitList);
+
+  const principlesPanel = createEl('div', 'format-panel format-panel--principles');
+  principlesPanel.appendChild(createEl('h3', '', 'Principles'));
+
+  const principles = createEl('div', 'principle-list');
+  format.principles.forEach((item) => {
+    const principle = createEl('article', 'principle-item');
+    const icon = createEl('span', 'principle-item__icon');
+    icon.innerHTML = icons.spark;
+    principle.append(icon, createEl('h4', '', item.title), createEl('p', '', item.body));
+    principles.appendChild(principle);
+  });
+  principlesPanel.appendChild(principles);
+
+  shell.append(splitPanel, principlesPanel);
+  root.replaceChildren(title, copy, shell);
+}
+
+function makePastEventCard(event) {
+  const card = createEl('article', 'past-card');
+  card.dataset.city = event.city;
+
+  const visual = createEl('a', 'past-card__visual');
+  visual.href = event.url;
+  visual.target = '_blank';
+  visual.rel = 'noopener noreferrer';
+
+  const image = createEl('img');
+  image.src = event.image;
+  image.alt = `${event.name} cover`;
+  image.loading = 'lazy';
+  visual.appendChild(image);
+
+  const content = createEl('div', 'past-card__content');
+  const status = createEl('p', 'event-card__status', event.status);
+  const title = createEl('h3', '', event.name);
+  const meta = createEl('div', 'event-meta');
+  [event.date, event.location].forEach((item) => {
+    meta.appendChild(createEl('span', '', item));
+  });
+
+  const summary = createEl('p', '', event.summary);
+  const highlights = createEl('ul', 'event-agenda event-agenda--compact');
+  event.highlights.forEach((item) => {
+    highlights.appendChild(createEl('li', '', item));
+  });
+
+  const actions = createEl('div', 'action-row action-row--left');
+  actions.appendChild(makeActionLink({ label: 'View Luma page', href: event.url, icon: 'calendar' }, 'quiet'));
+
+  content.append(status, title, meta, summary, highlights, actions);
+  card.append(visual, content);
+  return card;
+}
+
+export function renderPastEvents(config) {
+  const root = qs('#past');
+  const past = config.events.past;
+  if (!root || !past) return;
+
+  const title = createEl('h2', 'section-title', past.title);
+  const copy = createEl('p', 'section-copy section-copy--center', past.description);
+
+  const cities = ['All', ...new Set(past.items.map((item) => item.city))];
+  const filters = createEl('div', 'filter-bar');
+  filters.setAttribute('aria-label', 'Filter past DevRelJam events by city');
+
+  const count = createEl('p', 'filter-count');
+  const cards = createEl('div', 'past-grid');
+
+  function updateFilter(city) {
+    filters.querySelectorAll('button').forEach((button) => {
+      const active = button.dataset.city === city;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+
+    let visible = 0;
+    cards.querySelectorAll('.past-card').forEach((card) => {
+      const shouldShow = city === 'All' || card.dataset.city === city;
+      card.hidden = !shouldShow;
+      if (shouldShow) visible += 1;
+    });
+    count.textContent = `${visible} ${visible === 1 ? 'Jam' : 'Jams'} shown`;
+  }
+
+  cities.forEach((city) => {
+    const button = createEl('button', 'filter-button', city);
+    button.type = 'button';
+    button.dataset.city = city;
+    button.setAttribute('aria-pressed', 'false');
+    button.addEventListener('click', () => updateFilter(city));
+    filters.appendChild(button);
+  });
+
+  past.items.forEach((event) => {
+    cards.appendChild(makePastEventCard(event));
+  });
+
+  const highlightRow = createEl('div', 'past-actions');
+  highlightRow.appendChild(makeActionLink({ label: 'View community highlights', href: past.highlightUrl, icon: 'users' }, 'ghost'));
+
+  root.replaceChildren(title, copy, filters, count, cards, highlightRow);
+  updateFilter('All');
 }
 
 export function renderCities(config) {

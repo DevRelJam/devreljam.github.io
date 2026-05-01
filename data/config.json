@@ -74,11 +74,11 @@
     },
     "stats": [
       {
-        "value": "5",
-        "label": "cities mapped"
+        "value": "2",
+        "label": "cities hosted"
       },
       {
-        "value": "5+",
+        "value": "4",
         "label": "past Jams tracked"
       },
       {
@@ -266,23 +266,6 @@
           "imageAlt": "Bengaluru DevRelJam community group photo"
         },
         {
-          "name": "DevRel Jam Hyderabad - August 2025",
-          "city": "Hyderabad",
-          "date": "August 7, 2025",
-          "location": "Hyderabad, India",
-          "url": "https://lu.ma/umwjgbi2",
-          "repo": "https://github.com/DevRelJam/HYD-AUG-2025",
-          "image": "assets/images/gallery/gallery-bengaluru-2025-community.jpg",
-          "status": "Past event",
-          "summary": "A KubeCon India 2025-adjacent Jam designed around duo lightning talks, networking, and a practitioner panel.",
-          "highlights": [
-            "Four lightning talk sessions",
-            "Technology integration showcases",
-            "Panel discussion and networking"
-          ],
-          "imageAlt": "DevRelJam community photo"
-        },
-        {
           "name": "DevRelJam Bengaluru - April 2025",
           "city": "Bengaluru",
           "date": "April 22, 2025",
@@ -340,21 +323,6 @@
         "name": "Bengaluru",
         "status": "Past editions",
         "detail": "April 2025, September 2025, and April 2026"
-      },
-      {
-        "name": "Hyderabad",
-        "status": "Past edition",
-        "detail": "KubeCon India 2025-adjacent practitioner exchange"
-      },
-      {
-        "name": "Mumbai",
-        "status": "Tracked city",
-        "detail": "Future community opportunity"
-      },
-      {
-        "name": "San Francisco Bay Area",
-        "status": "Tracked city",
-        "detail": "Future community opportunity"
       }
     ]
   },
@@ -458,126 +426,126 @@
         "designation": "Founder and Executive Director, Pivot Project",
         "event": "Singapore February 2026",
         "image": "assets/images/speakers/speaker-annie-mathew.png",
-        "profile": "https://findyourpivot.org/"
+        "profile": "https://www.linkedin.com/in/annpmathew/"
       },
       {
         "name": "Donnie Prakoso",
         "designation": "Principal Developer Advocate, AWS",
         "event": "Singapore February 2026",
         "image": "assets/images/speakers/speaker-donnie-prakoso.png",
-        "profile": "https://github.com/donnieprakoso"
+        "profile": "https://www.linkedin.com/in/donnieprakoso"
       },
       {
         "name": "Thu Ya Kyaw",
         "designation": "Senior Developer Relations Engineer, Google",
         "event": "Singapore February 2026",
         "image": "assets/images/speakers/speaker-thu-ya-kyaw.jpg",
-        "profile": "https://sessionize.com/thuyakyaw/"
+        "profile": "https://www.linkedin.com/in/thuyakyaw/"
       },
       {
         "name": "Atsushi Nakatsugawa",
         "designation": "Developer Advocate, CodeRabbit",
         "event": "Bengaluru April 2026",
         "image": "assets/images/speakers/speaker-atsushi-nakatsugawa.jpg",
-        "profile": "https://github.com/goofmint"
+        "profile": "https://www.linkedin.com/in/goofmint/"
       },
       {
         "name": "Nimit Savant",
         "designation": "Developer Evangelist, DevRev",
         "event": "Bengaluru April 2026",
         "image": "assets/images/speakers/speaker-nimit-savant.jpg",
-        "profile": "https://dev.to/nimit2801"
+        "profile": "https://www.linkedin.com/in/nimitsavant/"
       },
       {
         "name": "Mary Grygleski",
         "designation": "Vice President, AI Collective",
         "event": "Bengaluru April 2026",
         "image": "assets/images/speakers/speaker-mary-grygleski.jpg",
-        "profile": "https://github.com/mgrygles"
+        "profile": "https://www.linkedin.com/in/mary-grygleski/"
       },
       {
         "name": "Brian Benz",
         "designation": "Principal AI Advocate, Microsoft",
         "event": "Bengaluru April 2026",
         "image": "assets/images/speakers/speaker-brian-benz.jpg",
-        "profile": "https://github.com/bbenz"
+        "profile": "https://www.linkedin.com/in/brianbenz/"
       },
       {
         "name": "Ben Greenberg",
         "designation": "Senior Developer Relations Engineer, Arbitrum",
         "event": "Bengaluru September 2025",
         "image": "assets/images/speakers/speaker-ben-greenberg.png",
-        "profile": "https://sessionize.com/ben-greenberg/"
+        "profile": "https://www.linkedin.com/in/hummusonrails/"
       },
       {
         "name": "Anuj Duggal",
         "designation": "Engineering Program Manager, Google Search",
         "event": "Bengaluru September 2025",
         "image": "assets/images/speakers/speaker-anuj-duggal.jpg",
-        "profile": "https://in.linkedin.com/in/anujduggal21"
+        "profile": "https://www.linkedin.com/in/anujduggal21/"
       },
       {
         "name": "Juhi Singh",
         "designation": "Technical Product Marketing Manager, Kong",
         "event": "Bengaluru September 2025",
         "image": "assets/images/speakers/speaker-juhi-singh.jpg",
-        "profile": "https://konghq.com/blog/news/kong-agentic-ai-hackathon-2025"
+        "profile": "https://www.linkedin.com/in/sjuhi/"
       },
       {
         "name": "Aditya Oberai",
         "designation": "Developer Relations Lead, Appwrite",
         "event": "Bengaluru September 2025",
         "image": "assets/images/speakers/speaker-aditya-oberai.jpg",
-        "profile": "https://github.com/adityaoberai"
+        "profile": "https://www.linkedin.com/in/adityaoberai1/"
       },
       {
         "name": "Shivay Lamba",
         "designation": "Senior Developer Experience Engineer, Couchbase",
         "event": "Bengaluru September 2025",
         "image": "assets/images/speakers/speaker-shivay-lamba.jpg",
-        "profile": "https://github.com/shivaylamba"
+        "profile": "https://www.linkedin.com/in/shivaylamba/"
       },
       {
         "name": "Yashraj Nayak",
         "designation": "Program Manager, Developer Relations",
         "event": "DevRelJam host and moderator",
         "image": "assets/images/speakers/speaker-yashraj-nayak.jpg",
-        "profile": "https://github.com/yashrajnayak"
+        "profile": "https://www.linkedin.com/in/yashrajnayak/"
       },
       {
         "name": "Ram Iyengar",
         "designation": "Chief Evangelist, Linux Foundation",
         "event": "Bengaluru April 2025",
         "image": "assets/images/speakers/speaker-ram-iyengar.jpg",
-        "profile": "https://github.com/ramiyengar"
+        "profile": "https://in.linkedin.com/in/ram-iyengar"
       },
       {
         "name": "James Ward",
         "designation": "Principal Developer Advocate, AWS",
         "event": "Bengaluru April 2025 and April 2026",
         "image": "assets/images/speakers/speaker-james-ward.jpg",
-        "profile": "https://github.com/jamesward"
+        "profile": "https://www.linkedin.com/in/jamesward"
       },
       {
         "name": "Ivar Grimstad",
         "designation": "Developer Advocate, Eclipse Foundation",
         "event": "Bengaluru April 2025",
         "image": "assets/images/speakers/speaker-ivar-grimstad.png",
-        "profile": "https://github.com/ivargrimstad"
+        "profile": "https://se.linkedin.com/in/ivargrimstad"
       },
       {
         "name": "Sourabh Bagrecha",
         "designation": "Senior Developer Advocate, MongoDB",
         "event": "Bengaluru April 2025",
         "image": "assets/images/speakers/speaker-sourabh-bagrecha.png",
-        "profile": "https://sessionize.com/sourabhbagrecha/"
+        "profile": "https://in.linkedin.com/in/sourabhbagrecha"
       },
       {
         "name": "Stephen Chin",
         "designation": "VP of Developer Relations, Neo4j",
         "event": "Bengaluru April 2025",
         "image": "assets/images/speakers/speaker-stephen-chin.png",
-        "profile": "https://github.com/steveonjava"
+        "profile": "https://www.linkedin.com/in/steveonjava"
       }
     ]
   },

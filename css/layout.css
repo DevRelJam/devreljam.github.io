@@ -2,43 +2,54 @@
 .site-main,
 .site-footer {
   margin-inline: auto;
-  max-width: var(--container);
-  padding-inline: 20px;
+  width: min(var(--container), 90%);
 }
 
 .site-header {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding-block: 20px;
+  min-width: 0;
+  padding-block: 1.5rem;
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: color-mix(in srgb, var(--bg) 90%, transparent);
-  backdrop-filter: blur(8px);
+  z-index: 900;
+}
+
+.site-header::before {
+  background: color-mix(in srgb, var(--background-color) 88%, transparent);
+  backdrop-filter: blur(14px);
+  content: '';
+  inset: 0 -5vw;
+  position: absolute;
+  z-index: -1;
 }
 
 .site-main {
   display: grid;
-  gap: 56px;
-  padding-bottom: 72px;
+  gap: clamp(3rem, 8vw, 5rem);
+  min-width: 0;
+  padding-bottom: 2rem;
 }
 
-.hero,
+.hero {
+  min-height: calc(100vh - 7rem);
+  padding-top: clamp(3rem, 8vw, 5rem);
+}
+
 .about,
 .events,
-.gallery,
+.cities,
 .speakers {
-  background: color-mix(in srgb, var(--paper) 92%, transparent);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-soft);
-  padding: 26px;
+  min-width: 0;
+  scroll-margin-top: 6rem;
 }
 
 .site-footer {
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border-color);
   display: grid;
-  gap: 20px;
-  padding-block: 28px 40px;
+  gap: 1.25rem;
+  margin-top: 4rem;
+  padding-block: 5rem;
+  text-align: center;
 }

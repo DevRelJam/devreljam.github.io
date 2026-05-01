@@ -1,16 +1,52 @@
 import { createEl, qs, safeExternalLink } from './utils.js';
 
+const icons = {
+  calendar:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>',
+  github:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.44 5.44 0 0 0 3.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>',
+  instagram:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>',
+  linkedin:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>',
+  mic:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 22h8"></path></svg>',
+  pin:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
+  users:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>'
+};
+
+function appendIcon(link, iconName, label) {
+  if (icons[iconName]) {
+    const icon = createEl('span', 'icon');
+    icon.innerHTML = icons[iconName];
+    link.appendChild(icon);
+  }
+  link.appendChild(document.createTextNode(label));
+}
+
+function makeActionLink(item, variant = 'ghost') {
+  const link = safeExternalLink(item.href);
+  link.className = `pill-link pill-link--${variant}`;
+  link.setAttribute('aria-label', item.label);
+  appendIcon(link, item.icon, item.label);
+  return link;
+}
+
 export function renderHeader(config) {
   const root = qs('#site-header');
-  const brand = createEl('div', 'brand');
+  const brand = document.createElement('a');
+  brand.className = 'brand';
+  brand.href = '#hero';
+  brand.setAttribute('aria-label', `${config.site.name} home`);
 
   const logo = createEl('img', 'brand__logo');
   logo.src = config.site.brand.logo;
   logo.alt = `${config.site.name} logo`;
   logo.loading = 'eager';
 
-  const title = createEl('div', 'brand__title', config.site.brand.title);
-
+  const title = createEl('span', 'brand__title', config.site.name);
   brand.append(logo, title);
 
   const nav = createEl('nav', 'nav');
@@ -27,93 +63,113 @@ export function renderHeader(config) {
 
 export function renderHero(config) {
   const root = qs('#hero');
+  const imageWrapper = createEl('div', 'hero__logo-wrap');
+  const image = createEl('img', 'hero__logo');
+  image.src = config.site.brand.logo;
+  image.alt = `${config.site.name} mark`;
+  image.loading = 'eager';
+  imageWrapper.appendChild(image);
 
-  const eyebrow = createEl('p', 'hero__eyebrow', config.hero.eyebrow);
   const headline = createEl('h1', 'hero__headline', config.hero.headline);
   const subheadline = createEl('p', 'hero__subheadline', config.hero.subheadline);
+  const body = createEl('p', 'hero__body', config.hero.body);
 
-  const actions = createEl('div', 'action-row');
-  const primary = safeExternalLink(config.hero.primaryCta.href);
-  primary.className = 'btn btn--solid';
-  primary.textContent = config.hero.primaryCta.label;
+  const actions = createEl('div', 'social-links');
+  actions.append(
+    makeActionLink(config.hero.primaryCta, 'solid'),
+    makeActionLink(config.hero.secondaryCta, 'ghost')
+  );
 
-  const secondary = safeExternalLink(config.hero.secondaryCta.href);
-  secondary.className = 'btn btn--ghost';
-  secondary.textContent = config.hero.secondaryCta.label;
-
-  actions.append(primary, secondary);
-
-  const statGrid = createEl('div', 'stat-grid');
-  config.hero.statCards.forEach((item) => {
-    const card = createEl('article', 'stat-card');
-    const label = createEl('p', 'stat-card__label', item.label);
-    const value = createEl('p', 'stat-card__value', item.value);
-    card.append(label, value);
-    statGrid.appendChild(card);
-  });
-
-  root.replaceChildren(eyebrow, headline, subheadline, actions, statGrid);
+  root.replaceChildren(imageWrapper, headline, subheadline, actions, body);
 }
 
 export function renderAbout(config) {
   const root = qs('#about');
   const title = createEl('h2', 'section-title', config.about.title);
-  const copy = createEl('p', 'section-copy', config.about.body);
+  const copy = createEl('div', 'section-copy');
 
-  const list = createEl('ul', 'highlight-list');
-  config.about.highlights.forEach((item) => {
-    const li = createEl('li', '', item);
-    list.appendChild(li);
+  config.about.paragraphs.forEach((paragraph) => {
+    copy.appendChild(createEl('p', '', paragraph));
   });
 
-  root.replaceChildren(title, copy, list);
+  const grid = createEl('div', 'feature-grid');
+  config.about.highlights.forEach((item) => {
+    const card = createEl('article', 'feature-card');
+    card.append(createEl('h3', '', item.title), createEl('p', '', item.body));
+    grid.appendChild(card);
+  });
+
+  root.replaceChildren(title, copy, grid);
 }
 
 export function renderEvents(config) {
   const root = qs('#events');
   const title = createEl('h2', 'section-title', config.events.title);
-  const copy = createEl('p', 'section-copy', config.events.description);
+  const copy = createEl('p', 'section-copy section-copy--center', config.events.description);
+  const event = config.events.current;
 
+  const card = createEl('article', 'event-card');
+  const content = createEl('div', 'event-card__content');
+  const status = createEl('p', 'event-card__status', event.status);
+  const eventTitle = createEl('h3', '', event.name);
+  const eventCopy = createEl('p', '', event.description);
+  const meta = createEl('div', 'event-meta');
+
+  [
+    `${event.date}`,
+    `${event.time} ${event.timezone}`,
+    `${event.location}`
+  ].forEach((item) => meta.appendChild(createEl('span', '', item)));
+
+  const agenda = createEl('ul', 'event-agenda');
+  event.agenda.forEach((item) => {
+    agenda.appendChild(createEl('li', '', item));
+  });
+
+  const eventActions = createEl('div', 'action-row');
+  eventActions.appendChild(makeActionLink({ label: 'Register on Luma', href: event.url, icon: 'calendar' }, 'solid'));
+  eventActions.appendChild(makeActionLink({ label: 'Full calendar', href: config.events.calendarUrl, icon: 'users' }, 'ghost'));
+
+  content.append(status, eventTitle, meta, eventCopy, agenda, eventActions);
+
+  const visual = createEl('div', 'event-card__visual');
+  const image = createEl('img');
+  image.src = event.image;
+  image.alt = `${event.name} cover`;
+  image.loading = 'lazy';
+  visual.appendChild(image);
+
+  card.append(content, visual);
+
+  const embedPanel = createEl('div', 'embed-panel');
+  const embedTitle = createEl('h3', '', 'Live Luma Feed');
   const frame = createEl('iframe', 'events__frame');
   frame.src = config.events.embed.src;
   frame.width = config.events.embed.width;
   frame.height = config.events.embed.height;
+  frame.title = 'DevRelJam Luma event calendar';
   frame.setAttribute('frameborder', '0');
   frame.style.border = config.events.embed.border;
   frame.style.borderRadius = config.events.embed.radius;
   frame.allowFullscreen = true;
-  frame.setAttribute('aria-hidden', 'false');
-  frame.tabIndex = 0;
   frame.loading = 'lazy';
   frame.referrerPolicy = 'no-referrer-when-downgrade';
+  embedPanel.append(embedTitle, frame);
 
-  const quick = safeExternalLink(config.events.calendarUrl);
-  quick.className = 'btn btn--ghost';
-  quick.textContent = 'Open full calendar';
-
-  root.replaceChildren(title, copy, frame, quick);
+  root.replaceChildren(title, copy, card, embedPanel);
 }
 
-export function renderGallery(config) {
-  const root = qs('#gallery');
-  const title = createEl('h2', 'section-title', config.gallery.title);
-  const copy = createEl('p', 'section-copy', config.gallery.description);
-  const grid = createEl('div', 'gallery-grid');
+export function renderCities(config) {
+  const root = qs('#cities');
+  const title = createEl('h2', 'section-title', config.cities.title);
+  const copy = createEl('p', 'section-copy section-copy--center', config.cities.description);
+  const grid = createEl('div', 'city-grid');
 
-  config.gallery.images.forEach((item) => {
-    const card = createEl('figure', 'gallery-card');
-    const image = createEl('img');
-    image.src = item.src;
-    image.alt = item.alt;
-    image.loading = 'lazy';
-
-    image.addEventListener('error', () => {
-      card.classList.add('gallery-card--missing');
-      card.replaceChildren(createEl('strong', '', 'Image missing'), createEl('p', '', item.caption));
-    });
-
-    const caption = createEl('figcaption', '', item.caption);
-    card.append(image, caption);
+  config.cities.items.forEach((item) => {
+    const card = createEl('article', 'city-card');
+    const icon = createEl('span', 'city-card__icon');
+    icon.innerHTML = icons.pin;
+    card.append(icon, createEl('h3', '', item.name), createEl('p', 'city-card__status', item.status), createEl('p', '', item.detail));
     grid.appendChild(card);
   });
 
@@ -122,45 +178,39 @@ export function renderGallery(config) {
 
 export function renderSpeakers(config) {
   const root = qs('#speakers');
-  const panel = createEl('div', 'speaker-panel');
-
-  const left = createEl('div');
-  left.append(
+  const panel = createEl('article', 'speaker-panel');
+  const content = createEl('div');
+  content.append(
     createEl('h2', 'section-title', config.speakers.title),
     createEl('p', 'section-copy', config.speakers.description)
   );
 
-  const apply = safeExternalLink(config.speakers.cta.href);
-  apply.className = 'btn btn--solid';
-  apply.textContent = config.speakers.cta.label;
-
-  panel.append(left, apply);
+  const apply = makeActionLink(config.speakers.cta, 'solid');
+  panel.append(content, apply);
   root.replaceChildren(panel);
 }
 
 export function renderFooter(config) {
   const root = qs('#site-footer');
 
-  const note = createEl('p', 'footer-credit', config.footer.note);
+  const note = createEl('p', 'footer-tagline', config.footer.note);
   const initiative = createEl('p', 'footer-credit');
   const initiativeLink = safeExternalLink(config.community.initiativeBy.href);
   initiativeLink.textContent = config.community.initiativeBy.name;
   initiative.append('An initiative by ', initiativeLink);
 
-  const socials = createEl('div', 'social-row');
+  const socials = createEl('div', 'footer-social');
   config.community.socials.forEach((item) => {
-    const link = safeExternalLink(item.href);
-    link.className = 'social-pill';
-    link.textContent = item.label;
-    socials.appendChild(link);
+    socials.appendChild(makeActionLink(item, 'icon'));
   });
 
   const now = new Date().getFullYear();
+  const builtWith = createEl('p', 'footer-credit', config.footer.builtWith);
   const copyright = createEl(
     'p',
     'footer-credit',
     `© ${now} ${config.footer.copyright}. All rights reserved.`
   );
 
-  root.replaceChildren(note, initiative, socials, copyright);
+  root.replaceChildren(note, socials, initiative, builtWith, copyright);
 }

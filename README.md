@@ -1,70 +1,18 @@
 # DevRelJam Website
 
-Minimal, modern, responsive community website for DevRelJam, built using only HTML, CSS, and vanilla JavaScript.
+Static, data-driven community website for DevRelJam, built with vanilla HTML, CSS, and JavaScript for GitHub Pages.
 
-The website is fully data-driven. Every editable piece of content is fetched from a single file: `data/config.json`.
+The site keeps the visual language close to [yashrajnayak.com](https://yashrajnayak.com): Inter/Outfit typography, light and dark theme tokens, pill actions, centered identity-led hero, white cards on a slate background, and simple GitHub Pages-friendly assets.
 
-## What This Redesign Solves
+## Content Source
 
-- Removes hardcoded community text/links from markup and JS.
-- Uses one JSON config source for all site content.
-- Keeps deployment simple for GitHub Pages (no framework, no build tooling required).
-- Improves SEO with dynamic title/description/Open Graph/Twitter tags and JSON-LD.
-- Generates OG image dynamically in-browser from config values.
-- Preserves your requested visual identity:
-  - Main background color `#fdf4e9`
-  - DEVRELJAM title rendered with `Rahong` font (local file)
-  - Luma events embed and speaker CTA integrated
+Most editable site content lives in:
 
-## Live Domain
+- `data/config.json`
 
-- Production URL: `https://devreljam.github.io`
-- Repository: `https://github.com/devreljam/devreljam.github.io`
+Update this file for event copy, Luma links, city status, speaker CTA copy, social links, and SEO metadata.
 
-## Project Structure
-
-```text
-.
-├── index.html
-├── css/
-│   ├── style.css
-│   ├── tokens.css
-│   ├── base.css
-│   ├── layout.css
-│   ├── components.css
-│   └── responsive.css
-├── js/
-│   ├── main.js
-│   └── modules/
-│       ├── config.js
-│       ├── render.js
-│       ├── seo.js
-│       └── utils.js
-├── data/
-│   └── config.json
-└── assets/
-    ├── fonts/
-    │   └── Rahong.ttf          (you add this)
-    └── images/
-        ├── favicon.png         (you add this)
-        ├── devreljam-logo.png  (you add this)
-        └── gallery/
-            ├── jam-01.jpg      (you add this)
-            ├── jam-02.jpg      (you add this)
-            ├── jam-03.jpg      (you add this)
-            └── jam-04.jpg      (you add this)
-```
-
-## Setup
-
-### 1. Clone
-
-```bash
-git clone https://github.com/devreljam/devreljam.github.io.git
-cd devreljam.github.io
-```
-
-### 2. Run Locally
+## Run Locally
 
 Use a local server so `fetch('data/config.json')` works.
 
@@ -72,84 +20,33 @@ Use a local server so `fetch('data/config.json')` works.
 python3 -m http.server 8000
 ```
 
-Open `http://localhost:8000`.
+Then open `http://localhost:8000`.
 
-## Content Management
+## Important Links
 
-Only edit `data/config.json`.
-
-### Sections you can update safely
-
-- `site`: domain, SEO defaults, brand assets, keywords
-- `navigation`: top nav links
-- `hero`: homepage intro and CTA buttons
-- `about`: DevRelJam summary and highlights
-- `events`: Luma calendar + embed config
-- `gallery`: photo cards and captions
-- `speakers`: call-for-speakers copy and Sessionize link
-- `community`: initiative owner and social links
-- `footer`: closing message
-
-## Asset Requirements
-
-### Rahong font
-
-Place the font file at:
-
-- `assets/fonts/Rahong.ttf`
-
-`DEVRELJAM` logo text falls back to a generic cursive family if the file is missing.
-
-### Logo and photos
-
-Place your uploaded logo and past-event photos at the paths already referenced in `data/config.json`.
-
-If any gallery image is missing, the card stays visible with a graceful placeholder state instead of breaking layout.
-
-## Luma + Sessionize Integration
-
-Configured from JSON:
-
-- Luma calendar page: `https://luma.com/devreljam`
-- Luma embed iframe: `https://luma.com/embed/calendar/cal-XxuFr8KES5quRte/events?lt=light`
+- Luma calendar: `https://luma.com/devreljam`
+- Current event: `https://luma.com/wnygmi8l`
 - Call for speakers: `https://sessionize.com/devreljam/`
+- Website: `https://devreljam.space/`
+- GitHub org: `https://github.com/DevRelJam`
 
-## SEO and OG Image
+## Deployment
 
-SEO behavior is handled in `js/modules/seo.js`:
+This repository is ready for GitHub Pages:
 
-- Sets page title and description from config
-- Updates Open Graph and Twitter metadata
-- Injects Organization JSON-LD schema dynamically
-- Generates a share image (1200x630) at runtime using Canvas and config content
+1. Keep `index.html`, `css/`, `js/`, `data/`, and `assets/` on the default branch.
+2. Enable GitHub Pages for the repository with the custom domain `devreljam.space`.
+3. Add GitHub Pages DNS records at the domain registrar for `devreljam.space`.
+4. Verify the published site at `https://devreljam.space/`.
 
-Note: Social crawlers usually read static HTML and may not execute JavaScript. Runtime-generated OG images are useful in-browser and for previews, but for guaranteed crawler support you should also keep a static fallback image in `assets/images/` and point `og:image` to it in `index.html`.
-
-## Personalization Included
-
-- Community framing and copy tailored to DevRelJam
-- Founder attribution to Yashraj Nayak
-- Social links for LinkedIn, Instagram, X, and GitHub
-- Event flow centered on practitioners already attending large conferences
-
-## Deployment (GitHub Pages)
-
-This repo works as a static site deployment:
-
-1. Push changes to default branch.
-2. Confirm Pages source points to that branch.
-3. Verify config-driven updates on `https://devreljam.github.io`.
+The `.nojekyll` file is included so GitHub Pages serves static assets directly without Jekyll processing.
 
 ## Maintenance Checklist
 
-Before each new DevRelJam cycle:
+Before each DevRelJam cycle:
 
-1. Update gallery image paths/captions in `data/config.json`.
-2. Confirm Luma embed URL and calendar link are still correct.
-3. Confirm Sessionize CFP link is active.
-4. Update hero/about copy for upcoming location/context.
-5. Verify logo/font files are present in `assets/`.
-
-## Credits
-
-DevRelJam is an initiative by [Yashraj Nayak](https://www.linkedin.com/in/yashrajnayak).
+1. Update the current event block in `data/config.json`.
+2. Confirm the Luma calendar and Sessionize links are active.
+3. Refresh `assets/images/event-singapore-2026.png` or add a new event image.
+4. Keep the GitHub org profile README in sync with the current Luma calendar.
+5. Check the deployed URL and social preview image after publishing.

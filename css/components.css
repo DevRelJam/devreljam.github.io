@@ -423,8 +423,7 @@
 .feature-card h3,
 .city-card h3,
 .event-card h3,
-.speaker-panel h2,
-.embed-panel h3 {
+.speaker-panel h2 {
   color: var(--primary-color);
   font-family: var(--font-display);
   font-size: 1.18rem;
@@ -539,7 +538,6 @@
   width: 100%;
 }
 
-.embed-panel,
 .speaker-panel {
   background: var(--card-background);
   border: 1px solid var(--border-color);
@@ -547,19 +545,6 @@
   box-shadow: var(--shadow-soft);
   min-width: 0;
   padding: 1.5rem;
-}
-
-.embed-panel h3 {
-  color: var(--text-color);
-  text-align: center;
-}
-
-.events__frame {
-  background: var(--background-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-xl);
-  min-height: 420px;
-  width: 100%;
 }
 
 .filter-bar {
@@ -674,64 +659,122 @@
   margin-top: 1.6rem;
 }
 
-.gallery-grid {
+.gallery-carousel {
   display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-inline: auto;
+  max-width: 62rem;
+}
+
+.gallery-carousel__viewport {
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+}
+
+.gallery-carousel__track {
+  display: flex;
+  transition: transform 0.45s ease;
+  width: 100%;
 }
 
 .gallery-card {
   background: var(--card-background);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow-soft);
   display: grid;
-  grid-template-rows: auto 1fr;
+  flex: 0 0 100%;
+  grid-template-columns: minmax(0, 1.3fr) minmax(20rem, 0.7fr);
   min-width: 0;
   overflow: hidden;
-  transition: var(--transition);
-}
-
-.gallery-card--featured {
-  grid-column: span 2;
-}
-
-.gallery-card:hover {
-  border-color: color-mix(in srgb, var(--primary-color) 30%, var(--border-color));
-  box-shadow: var(--shadow-lift);
-  transform: translateY(-3px);
 }
 
 .gallery-card__visual {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   background: var(--background-color);
   overflow: hidden;
-}
-
-.gallery-card--featured .gallery-card__visual {
-  aspect-ratio: 16 / 9;
 }
 
 .gallery-card__visual img {
   height: 100%;
   object-fit: cover;
-  transition: transform 0.45s ease;
   width: 100%;
 }
 
-.gallery-card:hover .gallery-card__visual img {
-  transform: scale(1.035);
+.gallery-card__content {
+  align-content: center;
+  display: grid;
+  gap: 0.6rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
 }
 
-.gallery-card__content {
-  display: grid;
-  gap: 0.45rem;
-  padding: 1.15rem;
+.gallery-carousel__controls {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.gallery-carousel__button {
+  align-items: center;
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  box-shadow: var(--shadow-soft);
+  color: var(--text-color);
+  cursor: pointer;
+  display: inline-flex;
+  height: 2.85rem;
+  justify-content: center;
+  transition: var(--transition);
+  width: 2.85rem;
+}
+
+.gallery-carousel__button:hover,
+.gallery-carousel__button:focus-visible {
+  border-color: color-mix(in srgb, var(--primary-color) 36%, var(--border-color));
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-2px);
+}
+
+.gallery-carousel__button svg {
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
+.gallery-carousel__counter {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  min-width: 4rem;
+  text-align: center;
+}
+
+.gallery-carousel__dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  justify-content: center;
+}
+
+.gallery-carousel__dot {
+  background: color-mix(in srgb, var(--text-muted) 35%, transparent);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 0.55rem;
+  padding: 0;
+  transition: var(--transition);
+  width: 0.55rem;
+}
+
+.gallery-carousel__dot.is-active {
+  background: var(--primary-color);
+  transform: scale(1.25);
 }
 
 .gallery-card__event,
-.person-card__event,
-.attendee-card__event {
+.person-card__event {
   color: var(--primary-color);
   font-size: 0.78rem;
   font-weight: 700;
@@ -740,8 +783,7 @@
 }
 
 .gallery-card h3,
-.person-card h4,
-.attendee-card h4 {
+.person-card h4 {
   color: var(--text-color);
   font-family: var(--font-display);
   font-size: 1rem;
@@ -751,9 +793,7 @@
 }
 
 .gallery-card__content > p:last-child,
-.person-card__role,
-.attendee-card__role,
-.people-note {
+.person-card__role {
   color: var(--text-muted);
   font-size: 0.92rem;
   line-height: 1.55;
@@ -792,8 +832,7 @@
   transition: var(--transition);
 }
 
-.person-card:hover,
-.attendee-card:hover {
+.person-card:hover {
   border-color: color-mix(in srgb, var(--primary-color) 30%, var(--border-color));
   box-shadow: var(--shadow-lift);
   transform: translateY(-2px);
@@ -833,41 +872,6 @@
 .person-card h4 a:hover,
 .person-card h4 a:focus-visible {
   color: var(--primary-color);
-}
-
-.attendee-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.attendee-card {
-  align-items: flex-start;
-  background: var(--card-background);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow-soft);
-  display: grid;
-  gap: 0.8rem;
-  grid-template-columns: 2.75rem 1fr;
-  min-width: 0;
-  padding: 1rem;
-  transition: var(--transition);
-}
-
-.attendee-card__mark {
-  align-items: center;
-  background: var(--background-color);
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  color: var(--primary-color);
-  display: inline-flex;
-  font-family: var(--font-display);
-  font-size: 0.86rem;
-  font-weight: 700;
-  height: 2.75rem;
-  justify-content: center;
-  width: 2.75rem;
 }
 
 .city-card {

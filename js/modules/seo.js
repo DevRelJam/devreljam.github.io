@@ -15,13 +15,14 @@ function setCanonical(url) {
   if (node && url) node.setAttribute('href', url);
 }
 
-function setFavicon(href) {
-  const node = document.head.querySelector('link[rel="icon"]');
+function setLink(selector, href) {
+  const node = document.head.querySelector(selector);
   if (node && href) node.setAttribute('href', href);
 }
 
 function makeJsonLd(config) {
   const { site, community, events } = config;
+  const schema = events.current.schema || {};
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -44,10 +45,10 @@ function makeJsonLd(config) {
         url: events.current.url,
         image: absoluteUrl(events.current.image, site.url),
         description: events.current.description,
-        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-        eventStatus: 'https://schema.org/EventScheduled',
-        startDate: '2026-09-29T18:00:00+08:00',
-        endDate: '2026-09-29T21:00:00+08:00',
+        eventAttendanceMode: schema.attendanceMode,
+        eventStatus: schema.eventStatus,
+        startDate: schema.startDate,
+        endDate: schema.endDate,
         location: {
           '@type': 'Place',
           name: events.current.location,
@@ -61,9 +62,9 @@ function makeJsonLd(config) {
         offers: {
           '@type': 'Offer',
           url: events.current.url,
-          availability: 'https://schema.org/InStock',
-          price: '0',
-          priceCurrency: 'USD'
+          availability: schema.offerAvailability,
+          price: schema.offerPrice,
+          priceCurrency: schema.offerCurrency
         }
       }
     ]
@@ -85,7 +86,8 @@ export async function applySeo(config) {
   setNamedMeta('author', author);
 
   setCanonical(canonical);
-  setFavicon(absoluteUrl(site.brand.favicon, site.url));
+  setLink('link[rel="icon"]', absoluteUrl(site.brand.favicon, site.url));
+  setLink('link[rel="apple-touch-icon"]', absoluteUrl(site.brand.favicon, site.url));
 
   setMeta('meta[property="og:title"]', title);
   setMeta('meta[property="og:description"]', description);

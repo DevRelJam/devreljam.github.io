@@ -13,6 +13,10 @@ const icons = {
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 22h8"></path></svg>',
   pin:
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>',
+  arrowLeft:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>',
+  arrowRight:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>',
   spark:
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"></path></svg>',
   users:
@@ -30,10 +34,24 @@ function appendIcon(link, iconName, label) {
 
 function makeActionLink(item, variant = 'ghost') {
   const link = safeExternalLink(item.href);
-  link.className = `pill-link pill-link--${variant}`;
+  link.className = `pill-link pill-link--${item.variant || variant}`;
   link.setAttribute('aria-label', item.label);
   appendIcon(link, item.icon, item.label);
   return link;
+}
+
+function makeIconButton(label, iconName, className) {
+  const button = createEl('button', className);
+  button.type = 'button';
+  button.setAttribute('aria-label', label);
+  const icon = createEl('span', 'icon');
+  icon.innerHTML = icons[iconName];
+  button.appendChild(icon);
+  return button;
+}
+
+function templateText(template, values) {
+  return String(template || '').replace(/\{(\w+)\}/g, (_, key) => values[key] ?? '');
 }
 
 function initials(name) {
@@ -50,18 +68,18 @@ export function renderHeader(config) {
   const brand = document.createElement('a');
   brand.className = 'brand';
   brand.href = '#hero';
-  brand.setAttribute('aria-label', `${config.site.name} home`);
+  brand.setAttribute('aria-label', config.ui.header.homeLabel);
 
   const logo = createEl('img', 'brand__logo');
   logo.src = config.site.brand.logo;
-  logo.alt = `${config.site.name} logo`;
+  logo.alt = config.ui.header.logoAlt;
   logo.loading = 'eager';
 
   const title = createEl('span', 'brand__title', config.site.name);
   brand.append(logo, title);
 
   const nav = createEl('nav', 'nav');
-  nav.setAttribute('aria-label', 'Primary navigation');
+  nav.setAttribute('aria-label', config.ui.header.navLabel);
 
   config.navigation.forEach((item) => {
     const link = createEl('a', 'nav__link', item.label);
@@ -77,7 +95,7 @@ export function renderHero(config) {
   const imageWrapper = createEl('div', 'hero__logo-wrap');
   const image = createEl('img', 'hero__logo');
   image.src = config.site.brand.logo;
-  image.alt = `${config.site.name} mark`;
+  image.alt = config.ui.hero.logoAlt;
   image.loading = 'eager';
   imageWrapper.appendChild(image);
 
@@ -145,36 +163,21 @@ export function renderEvents(config) {
   });
 
   const eventActions = createEl('div', 'action-row');
-  eventActions.appendChild(makeActionLink({ label: 'Register on Luma', href: event.url, icon: 'calendar' }, 'solid'));
-  eventActions.appendChild(makeActionLink({ label: 'Full calendar', href: config.events.calendarUrl, icon: 'users' }, 'ghost'));
+  (event.actions || []).forEach((item) => {
+    eventActions.appendChild(makeActionLink(item, item.variant));
+  });
 
   content.append(status, eventTitle, meta, eventCopy, agenda, eventActions);
 
   const visual = createEl('div', 'event-card__visual');
   const image = createEl('img');
   image.src = event.image;
-  image.alt = `${event.name} cover`;
+  image.alt = event.imageAlt;
   image.loading = 'lazy';
   visual.appendChild(image);
 
   card.append(content, visual);
-
-  const embedPanel = createEl('div', 'embed-panel');
-  const embedTitle = createEl('h3', '', 'Live Luma Feed');
-  const frame = createEl('iframe', 'events__frame');
-  frame.src = config.events.embed.src;
-  frame.width = config.events.embed.width;
-  frame.height = config.events.embed.height;
-  frame.title = 'DevRelJam Luma event calendar';
-  frame.setAttribute('frameborder', '0');
-  frame.style.border = config.events.embed.border;
-  frame.style.borderRadius = config.events.embed.radius;
-  frame.allowFullscreen = true;
-  frame.loading = 'lazy';
-  frame.referrerPolicy = 'no-referrer-when-downgrade';
-  embedPanel.append(embedTitle, frame);
-
-  root.replaceChildren(title, copy, card, embedPanel);
+  root.replaceChildren(title, copy, card);
 }
 
 export function renderFormat(config) {
@@ -187,7 +190,7 @@ export function renderFormat(config) {
   const shell = createEl('div', 'format-shell');
 
   const splitPanel = createEl('div', 'format-panel');
-  splitPanel.appendChild(createEl('h3', '', 'What to expect'));
+  splitPanel.appendChild(createEl('h3', '', format.splitTitle));
 
   const splitList = createEl('div', 'format-split');
   format.split.forEach((item) => {
@@ -202,7 +205,7 @@ export function renderFormat(config) {
   splitPanel.appendChild(splitList);
 
   const principlesPanel = createEl('div', 'format-panel format-panel--principles');
-  principlesPanel.appendChild(createEl('h3', '', 'Principles'));
+  principlesPanel.appendChild(createEl('h3', '', format.principlesTitle));
 
   const principles = createEl('div', 'principle-list');
   format.principles.forEach((item) => {
@@ -218,7 +221,7 @@ export function renderFormat(config) {
   root.replaceChildren(title, copy, shell);
 }
 
-function makePastEventCard(event) {
+function makePastEventCard(event, past) {
   const card = createEl('article', 'past-card');
   card.dataset.city = event.city;
 
@@ -229,7 +232,7 @@ function makePastEventCard(event) {
 
   const image = createEl('img');
   image.src = event.image;
-  image.alt = `${event.name} cover`;
+  image.alt = event.imageAlt;
   image.loading = 'lazy';
   visual.appendChild(image);
 
@@ -248,9 +251,9 @@ function makePastEventCard(event) {
   });
 
   const actions = createEl('div', 'action-row action-row--left');
-  actions.appendChild(makeActionLink({ label: 'View Luma page', href: event.url, icon: 'calendar' }, 'quiet'));
+  actions.appendChild(makeActionLink({ ...past.actions.luma, href: event.url }, past.actions.luma.variant));
   if (event.repo) {
-    actions.appendChild(makeActionLink({ label: 'Jam repo', href: event.repo, icon: 'github' }, 'quiet'));
+    actions.appendChild(makeActionLink({ ...past.actions.repo, href: event.repo }, past.actions.repo.variant));
   }
 
   content.append(status, title, meta, summary, highlights, actions);
@@ -266,9 +269,10 @@ export function renderPastEvents(config) {
   const title = createEl('h2', 'section-title', past.title);
   const copy = createEl('p', 'section-copy section-copy--center', past.description);
 
-  const cities = ['All', ...new Set(past.items.map((item) => item.city))];
+  const filter = past.filter;
+  const cities = [filter.allLabel, ...new Set(past.items.map((item) => item.city))];
   const filters = createEl('div', 'filter-bar');
-  filters.setAttribute('aria-label', 'Filter past DevRelJam events by city');
+  filters.setAttribute('aria-label', filter.ariaLabel);
 
   const count = createEl('p', 'filter-count');
   const cards = createEl('div', 'past-grid');
@@ -282,11 +286,12 @@ export function renderPastEvents(config) {
 
     let visible = 0;
     cards.querySelectorAll('.past-card').forEach((card) => {
-      const shouldShow = city === 'All' || card.dataset.city === city;
+      const shouldShow = city === filter.allLabel || card.dataset.city === city;
       card.hidden = !shouldShow;
       if (shouldShow) visible += 1;
     });
-    count.textContent = `${visible} ${visible === 1 ? 'Jam' : 'Jams'} shown`;
+    const unit = visible === 1 ? filter.countSingular : filter.countPlural;
+    count.textContent = templateText(filter.countTemplate, { count: visible, unit });
   }
 
   cities.forEach((city) => {
@@ -299,14 +304,16 @@ export function renderPastEvents(config) {
   });
 
   past.items.forEach((event) => {
-    cards.appendChild(makePastEventCard(event));
+    cards.appendChild(makePastEventCard(event, past));
   });
 
   const highlightRow = createEl('div', 'past-actions');
-  highlightRow.appendChild(makeActionLink({ label: 'View community highlights', href: past.highlightUrl, icon: 'users' }, 'ghost'));
+  if (past.highlightCta) {
+    highlightRow.appendChild(makeActionLink(past.highlightCta, past.highlightCta.variant));
+  }
 
   root.replaceChildren(title, copy, filters, count, cards, highlightRow);
-  updateFilter('All');
+  updateFilter(filter.allLabel);
 }
 
 export function renderGallery(config) {
@@ -316,14 +323,25 @@ export function renderGallery(config) {
 
   const title = createEl('h2', 'section-title', gallery.title);
   const copy = createEl('p', 'section-copy section-copy--center', gallery.description);
-  const grid = createEl('div', 'gallery-grid');
+  const carouselConfig = gallery.carousel;
+  const carousel = createEl('div', 'gallery-carousel');
+  carousel.setAttribute('role', 'region');
+  carousel.setAttribute('aria-label', carouselConfig.ariaLabel);
+
+  const viewport = createEl('div', 'gallery-carousel__viewport');
+  const track = createEl('div', 'gallery-carousel__track');
 
   gallery.items.forEach((item, index) => {
-    const card = createEl('article', index === 0 ? 'gallery-card gallery-card--featured' : 'gallery-card');
+    const card = createEl('article', 'gallery-card');
+    card.setAttribute('aria-label', templateText(carouselConfig.slideLabelTemplate, {
+      title: item.title,
+      index: index + 1,
+      total: gallery.items.length
+    }));
     const visual = createEl('div', 'gallery-card__visual');
     const image = createEl('img');
     image.src = item.image;
-    image.alt = `${item.title}: ${item.caption}`;
+    image.alt = item.imageAlt || item.caption;
     image.loading = index < 2 ? 'eager' : 'lazy';
     visual.appendChild(image);
 
@@ -335,10 +353,51 @@ export function renderGallery(config) {
     );
 
     card.append(visual, content);
-    grid.appendChild(card);
+    track.appendChild(card);
+  });
+  viewport.appendChild(track);
+
+  const controls = createEl('div', 'gallery-carousel__controls');
+  const previous = makeIconButton(carouselConfig.previousLabel, 'arrowLeft', 'gallery-carousel__button');
+  const next = makeIconButton(carouselConfig.nextLabel, 'arrowRight', 'gallery-carousel__button');
+  const counter = createEl('p', 'gallery-carousel__counter');
+  controls.append(previous, counter, next);
+
+  const dots = createEl('div', 'gallery-carousel__dots');
+  const dotButtons = gallery.items.map((_, index) => {
+    const dot = createEl('button', 'gallery-carousel__dot');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', templateText(carouselConfig.dotLabelTemplate, { index: index + 1 }));
+    dot.addEventListener('click', () => goTo(index));
+    dots.appendChild(dot);
+    return dot;
   });
 
-  root.replaceChildren(title, copy, grid);
+  let currentIndex = 0;
+  function goTo(nextIndex) {
+    currentIndex = (nextIndex + gallery.items.length) % gallery.items.length;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    counter.textContent = templateText(carouselConfig.counterTemplate, {
+      index: currentIndex + 1,
+      total: gallery.items.length
+    });
+
+    track.querySelectorAll('.gallery-card').forEach((card, index) => {
+      card.setAttribute('aria-hidden', String(index !== currentIndex));
+    });
+    dotButtons.forEach((dot, index) => {
+      const active = index === currentIndex;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  previous.addEventListener('click', () => goTo(currentIndex - 1));
+  next.addEventListener('click', () => goTo(currentIndex + 1));
+
+  carousel.append(viewport, controls, dots);
+  root.replaceChildren(title, copy, carousel);
+  goTo(0);
 }
 
 export function renderPeople(config) {
@@ -358,7 +417,7 @@ export function renderPeople(config) {
     if (person.image) {
       const image = createEl('img');
       image.src = person.image;
-      image.alt = `${person.name} headshot`;
+      image.alt = `${person.name} ${config.ui.images.headshotSuffix}`;
       image.loading = 'lazy';
       avatar.appendChild(image);
     } else {
@@ -385,23 +444,7 @@ export function renderPeople(config) {
     speakerGrid.appendChild(card);
   });
 
-  const attendeeHeading = createEl('h3', 'subsection-title subsection-title--spaced', people.attendeesTitle);
-  const attendeeNote = createEl('p', 'section-copy section-copy--center people-note', people.attendeesNote);
-  const attendeeGrid = createEl('div', 'attendee-grid');
-  (people.featuredAttendees || []).forEach((person) => {
-    const card = createEl('article', 'attendee-card');
-    const mark = createEl('span', 'attendee-card__mark', initials(person.name));
-    const content = createEl('div');
-    content.append(
-      createEl('h4', '', person.name),
-      createEl('p', 'attendee-card__role', person.designation),
-      createEl('p', 'attendee-card__event', person.event)
-    );
-    card.append(mark, content);
-    attendeeGrid.appendChild(card);
-  });
-
-  root.replaceChildren(title, copy, speakerHeading, speakerGrid, attendeeHeading, attendeeNote, attendeeGrid);
+  root.replaceChildren(title, copy, speakerHeading, speakerGrid);
 }
 
 export function renderCities(config) {
@@ -442,7 +485,7 @@ export function renderFooter(config) {
   const initiative = createEl('p', 'footer-credit');
   const initiativeLink = safeExternalLink(config.community.initiativeBy.href);
   initiativeLink.textContent = config.community.initiativeBy.name;
-  initiative.append('An initiative by ', initiativeLink);
+  initiative.append(`${config.footer.initiativePrefix} `, initiativeLink);
 
   const socials = createEl('div', 'footer-social');
   config.community.socials.forEach((item) => {
@@ -454,7 +497,7 @@ export function renderFooter(config) {
   const copyright = createEl(
     'p',
     'footer-credit',
-    `© ${now} ${config.footer.copyright}. All rights reserved.`
+    templateText(config.footer.copyrightTemplate, { year: now, copyright: config.footer.copyright })
   );
 
   root.replaceChildren(note, socials, initiative, builtWith, copyright);

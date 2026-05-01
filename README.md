@@ -6,11 +6,11 @@ The site keeps the visual language close to [yashrajnayak.com](https://yashrajna
 
 ## Content Source
 
-Most editable site content lives in:
+All editable website and organization profile content lives in:
 
 - `data/config.json`
 
-Update this file for event copy, Luma links, Jam format copy, past event cards, gallery images, featured people, city status, speaker CTA copy, social links, and SEO metadata.
+Update this file for event copy, Luma links, Jam format copy, past event cards, group-photo cover images, gallery carousel slides, featured speakers, city status, speaker CTA copy, social links, SEO metadata, and generated profile README sections.
 
 ## Run Locally
 
@@ -67,7 +67,7 @@ Before each DevRelJam cycle:
 
 1. Update the current event block in `data/config.json`.
 2. Confirm the Luma calendar and Sessionize links are active.
-3. Refresh current and past event images in `assets/images/` when a new Jam is added.
+3. Refresh current and past event cover images with group photos, not social graphics.
 4. Add only approved public photos to `assets/images/gallery/` and public profile headshots to `assets/images/speakers/`.
 5. Confirm the profile README sync workflow in `DevRelJam/.github` succeeds after the scheduled or manual sync run.
 6. Check the deployed URL and social preview image after publishing.

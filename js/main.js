@@ -14,7 +14,7 @@ import {
 } from './modules/render.js';
 import { applySeo } from './modules/seo.js';
 
-function initTheme() {
+function initTheme(labels) {
   const root = document.documentElement;
   const toggle = document.querySelector('.theme-switch');
   const savedTheme = localStorage.getItem('devreljam-theme');
@@ -24,7 +24,7 @@ function initTheme() {
     root.dataset.theme = theme;
     if (!toggle) return;
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    toggle.setAttribute('aria-label', `Switch to ${nextTheme} theme`);
+    toggle.setAttribute('aria-label', nextTheme === 'dark' ? labels.switchToDark : labels.switchToLight);
   }
 
   setTheme(initialTheme);
@@ -38,13 +38,18 @@ function initTheme() {
   }
 }
 
+function renderDocumentChrome(config) {
+  const skipLink = document.querySelector('.skip-link');
+  if (skipLink) skipLink.textContent = config.ui.skipLink;
+}
+
 async function boot() {
   try {
-    initTheme();
-
     const config = await loadConfig();
 
     document.documentElement.lang = config.site.language || 'en';
+    renderDocumentChrome(config);
+    initTheme(config.ui.theme);
 
     renderHeader(config);
     renderHero(config);

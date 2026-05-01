@@ -5,7 +5,6 @@ const path = require('path');
 
 const DEFAULT_CONFIG_PATH = 'data/config.json';
 const DEFAULT_PROFILE_README_PATH = 'profile-repo/profile/README.md';
-const DEFAULT_PROFILE_COVER = '/assets/DevRelJam%20Cover.png';
 
 function readJson(filePath) {
   if (!fs.existsSync(filePath)) {
@@ -34,14 +33,18 @@ function getLink(config, label) {
   return links.find((link) => link.label?.toLowerCase() === normalizedLabel)?.href;
 }
 
-function badge(label, message, color, url, logo) {
+function templateText(template, values) {
+  return String(template || '').replace(/\{(\w+)\}/g, (_, key) => values[key] ?? '');
+}
+
+function badge(label, message, color, url, logo, style) {
   if (!url) return '';
 
   const safeLabel = encodeURIComponent(label).replace(/-/g, '--');
   const safeMessage = encodeURIComponent(message).replace(/-/g, '--');
   const logoQuery = logo ? `&logo=${encodeURIComponent(logo)}&logoColor=white` : '';
 
-  return `[![${label}](https://img.shields.io/badge/${safeLabel}-${safeMessage}-${color}?style=for-the-badge${logoQuery})](${url})`;
+  return `[![${label}](https://img.shields.io/badge/${safeLabel}-${safeMessage}-${color}?style=${style}${logoQuery})](${url})`;
 }
 
 function list(items) {
@@ -52,14 +55,21 @@ function mdLink(label, url) {
   return url ? `[${escapeTableCell(label)}](${url})` : escapeTableCell(label);
 }
 
-function table(rows) {
+function table(headers, rows) {
   if (!rows.length) return '';
 
   return [
-    '| City | Status | Detail |',
-    '| --- | --- | --- |',
-    ...rows.map((city) => `| ${escapeTableCell(city.name)} | ${escapeTableCell(city.status)} | ${escapeTableCell(city.detail)} |`)
+    `| ${headers.map(escapeTableCell).join(' | ')} |`,
+    `| ${headers.map(() => '---').join(' | ')} |`,
+    ...rows.map((row) => `| ${row.map(escapeTableCell).join(' | ')} |`)
   ].join('\n');
+}
+
+function replaceNamedLinks(text, linksByLabel) {
+  return Object.entries(linksByLabel).reduce((body, [label, url]) => {
+    if (!url) return body;
+    return body.replace(label, mdLink(label, url));
+  }, text);
 }
 
 function validateConfig(config) {
@@ -86,6 +96,9 @@ function generateProfileReadme(config) {
   const currentEvent = events.current || {};
   const speakers = config.speakers || {};
   const people = config.people || {};
+  const profile = config.profile || {};
+  const headings = profile.headings || {};
+  const tableConfig = profile.tables || {};
   const community = config.community || {};
   const cities = config.cities?.items || [];
   const pastEvents = events.past?.items || [];
@@ -97,51 +110,72 @@ function generateProfileReadme(config) {
   const instagramUrl = getLink(config, 'Instagram');
   const githubUrl = getLink(config, 'GitHub') || 'https://github.com/DevRelJam';
   const founder = community.initiativeBy;
+  const hrefs = {
+    website: websiteUrl,
+    luma: lumaUrl,
+    sessionize: sessionizeUrl,
+    linkedin: linkedinUrl,
+    instagram: instagramUrl,
+    github: githubUrl
+  };
 
-  const badges = [
-    badge('Website', site.domain || site.name, '2563eb', websiteUrl),
-    badge('Luma', 'Calendar', '111111', lumaUrl),
-    badge('Speakers', 'Sessionize', '2563eb', sessionizeUrl),
-    badge('LinkedIn', 'DevRelJam', '0A66C2', linkedinUrl, 'linkedin'),
-    badge('Instagram', 'DevRelJam', 'E4405F', instagramUrl, 'instagram'),
-    badge('GitHub', 'Organization', '181717', githubUrl, 'github')
-  ].filter(Boolean).join('\n');
+  const badges = (profile.badges || [])
+    .map((item) => badge(item.label, item.message, item.color, item.href || hrefs[item.hrefKey], item.logo, profile.badgeStyle))
+    .filter(Boolean)
+    .join('\n');
 
   const aboutText = (about.paragraphs || [site.description]).filter(Boolean).join('\n\n');
   const highlights = list((about.highlights || []).map((item) => `**${item.title}:** ${item.body}`));
   const agenda = list(currentEvent.agenda || []);
-  const cityTable = table(cities);
+  const cityTable = table(tableConfig.cityHeaders || [], cities.map((city) => [city.name, city.status, city.detail]));
   const pastTable = pastEvents.length
-    ? [
-        '| Jam | Date | Location | Repo | Luma |',
-        '| --- | --- | --- | --- | --- |',
-        ...pastEvents.map((event) => {
-          const repo = event.repo ? `[Repo](${event.repo})` : '';
-          const luma = event.url ? `[Luma](${event.url})` : '';
-          return `| ${mdLink(event.name, event.repo || event.url)} | ${escapeTableCell(event.date)} | ${escapeTableCell(event.location)} | ${repo} | ${luma} |`;
+    ? table(
+        tableConfig.pastHeaders || [],
+        pastEvents.map((event) => {
+          const repo = event.repo ? mdLink(tableConfig.repoLabel, event.repo) : '';
+          const luma = event.url ? mdLink(tableConfig.lumaLabel, event.url) : '';
+          return [mdLink(event.name, event.repo || event.url), event.date, event.location, repo, luma];
         })
-      ].join('\n')
+      )
     : '';
   const speakerTable = people.speakers?.length
-    ? [
-        '| Speaker | Role | Jam |',
-        '| --- | --- | --- |',
-        ...people.speakers.map((person) => `| ${mdLink(person.name, person.profile)} | ${escapeTableCell(person.designation)} | ${escapeTableCell(person.event)} |`)
-      ].join('\n')
+    ? table(
+        tableConfig.peopleHeaders || [],
+        people.speakers.map((person) => [mdLink(person.name, person.profile), person.designation, person.event])
+      )
     : '';
-  const attendeeTable = people.featuredAttendees?.length
-    ? [
-        '| Attendee | Designation | Jam |',
-        '| --- | --- | --- |',
-        ...people.featuredAttendees.map((person) => `| ${escapeTableCell(person.name)} | ${escapeTableCell(person.designation)} | ${escapeTableCell(person.event)} |`)
-      ].join('\n')
+  const eventDetailRows = (tableConfig.upcomingRows || []).map((row) => {
+    const values = {
+      date: currentEvent.date,
+      timeWithTimezone: `${currentEvent.time}${currentEvent.timezone ? ` ${currentEvent.timezone}` : ''}`,
+      location: currentEvent.location,
+      status: currentEvent.status,
+      url: currentEvent.url
+    };
+    const value = row.linkLabel ? mdLink(row.linkLabel, values[row.valueKey]) : values[row.valueKey];
+    return [row.label, value];
+  });
+  const eventDetailTable = table(tableConfig.upcomingHeaders || [], eventDetailRows);
+  const involvement = list((profile.involvement || []).map((item) => {
+    const linkMap = {};
+    if (item.hrefKey && item.hrefLabel) linkMap[item.hrefLabel] = hrefs[item.hrefKey];
+    (item.links || []).forEach((link) => {
+      linkMap[link.label] = hrefs[link.hrefKey] || link.href;
+    });
+    return `**${item.label}:** ${replaceNamedLinks(item.text, linkMap)}`;
+  }));
+  const codeOfConductBody = profile.codeOfConduct
+    ? replaceNamedLinks(profile.codeOfConduct.body, { [profile.codeOfConduct.linkLabel]: profile.codeOfConduct.href })
     : '';
+  const contactText = founder?.name && founder?.href
+    ? templateText(profile.contact?.initiativeTemplate, { name: mdLink(founder.name, founder.href) })
+    : profile.contact?.fallback;
 
-  return `<!-- AUTO-GENERATED: Edit data/config.json in DevRelJam/devreljam.github.io, then run scripts/generate-profile-readme.cjs. -->
+  return `<!-- ${profile.generatedComment} -->
 
 # ${site.name}
 
-![${site.name} cover](${DEFAULT_PROFILE_COVER})
+![${site.name} cover](${profile.coverImage})
 
 ${hero.subheadline || site.tagline || ''}
 
@@ -153,43 +187,35 @@ ${badges}
 
 </div>
 
-## What is DevRelJam?
+## ${headings.about}
 
 ${aboutText}
 
-${highlights ? `## What Makes a Jam Different?\n\n${highlights}\n\n` : ''}## Upcoming Jam
+${highlights ? `## ${headings.highlights}\n\n${highlights}\n\n` : ''}## ${headings.upcoming}
 
 ### ${currentEvent.name}
 
-| Detail | Information |
-| --- | --- |
-| Date | ${escapeTableCell(currentEvent.date)} |
-| Time | ${escapeTableCell(`${currentEvent.time}${currentEvent.timezone ? ` ${currentEvent.timezone}` : ''}`)} |
-| Location | ${escapeTableCell(currentEvent.location)} |
-| Status | ${escapeTableCell(currentEvent.status)} |
-| Register | [Luma event](${currentEvent.url}) |
+${eventDetailTable}
 
 ${currentEvent.description || ''}
 
-${agenda ? `**Agenda**\n\n${agenda}\n\n` : ''}## Where We Jam
+${agenda ? `**${headings.agenda}**\n\n${agenda}\n\n` : ''}## ${headings.cities}
 
 ${config.cities?.description || ''}
 
 ${cityTable}
 
-${pastTable ? `## Past Jams\n\n${events.past?.description || 'Past DevRelJam editions are tracked from the same website config.'}\n\n${pastTable}\n\n` : ''}${speakerTable ? `## Featured Speakers and Moderators\n\n${people.description || 'People who have shaped past DevRelJam rooms.'}\n\n${speakerTable}\n\n` : ''}${attendeeTable ? `## Featured Attendees\n\n${people.attendeesNote || 'Featured community attendees from previous Jams.'}\n\n${attendeeTable}\n\n` : ''}## How to Get Involved
+${pastTable ? `## ${headings.past}\n\n${events.past?.description || ''}\n\n${pastTable}\n\n` : ''}${speakerTable ? `## ${headings.people}\n\n${people.description || ''}\n\n${speakerTable}\n\n` : ''}## ${headings.involved}
 
-- **Attend:** Check the [DevRelJam Luma calendar](${lumaUrl}) for upcoming Jams and RSVP.
-- **Speak:** Submit a practitioner talk or discussion idea through [Sessionize](${sessionizeUrl}).
-- **Follow along:** Watch this GitHub organization and follow DevRelJam on [LinkedIn](${linkedinUrl})${instagramUrl ? ` and [Instagram](${instagramUrl})` : ''}.
+${involvement}
 
-${speakers.description ? `## Speak at a Future Jam\n\n${speakers.description}\n\n` : ''}## Code of Conduct
+${speakers.description ? `## ${headings.speak}\n\n${speakers.description}\n\n` : ''}## ${headings.codeOfConduct}
 
-We are committed to providing a welcoming and inclusive environment for all participants. Please review the [Code of Conduct](https://github.com/DevRelJam/.github/blob/main/CODE_OF_CONDUCT.md) before participating in DevRelJam events or community spaces.
+${codeOfConductBody}
 
-## Contact
+## ${headings.contact}
 
-${founder?.name && founder?.href ? `DevRelJam is an initiative by [${founder.name}](${founder.href}).` : 'For DevRelJam inquiries, reach out through the community links above.'}
+${contactText}
 
 ${config.footer?.note || ''}
 `;

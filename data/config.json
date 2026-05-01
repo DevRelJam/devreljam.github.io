@@ -17,7 +17,7 @@
     "brand": {
       "logo": "assets/images/devreljam-logo.png",
       "cover": "assets/images/devreljam-cover.png",
-      "favicon": "assets/images/favicon.png",
+      "favicon": "assets/images/devreljam-logo.png",
       "accent": "#2563eb"
     },
     "seo": {
@@ -137,7 +137,9 @@
         "title": "Real notes over polish",
         "body": "The format rewards lessons learned, honest tradeoffs, and operational details."
       }
-    ]
+    ],
+    "splitTitle": "What to expect",
+    "principlesTitle": "Principles"
   },
   "about": {
     "title": "What is DevRelJam?",
@@ -167,7 +169,7 @@
     "current": {
       "name": "DevRelJam Singapore - September 2026",
       "url": "https://luma.com/wnygmi8l",
-      "image": "assets/images/event-singapore-2026.png",
+      "image": "assets/images/gallery/gallery-singapore-2026-group.jpg",
       "date": "Tuesday, September 29, 2026",
       "time": "6:00 PM - 9:00 PM",
       "timezone": "Singapore Time",
@@ -181,14 +183,31 @@
         "Closing remarks and community time"
       ],
       "repo": "https://github.com/DevRelJam/SG-SEP-2026",
-      "template": "https://github.com/DevRelJam/jam-template"
-    },
-    "embed": {
-      "src": "https://luma.com/embed/calendar/cal-XxuFr8KES5quRte/events?lt=light",
-      "width": "600",
-      "height": "420",
-      "border": "1px solid var(--border-color)",
-      "radius": "16px"
+      "template": "https://github.com/DevRelJam/jam-template",
+      "imageAlt": "Singapore DevRelJam community group photo",
+      "schema": {
+        "startDate": "2026-09-29T18:00:00+08:00",
+        "endDate": "2026-09-29T21:00:00+08:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "attendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "offerAvailability": "https://schema.org/InStock",
+        "offerPrice": "0",
+        "offerCurrency": "USD"
+      },
+      "actions": [
+        {
+          "label": "Register on Luma",
+          "href": "https://luma.com/wnygmi8l",
+          "icon": "calendar",
+          "variant": "solid"
+        },
+        {
+          "label": "Full calendar",
+          "href": "https://luma.com/devreljam",
+          "icon": "users",
+          "variant": "ghost"
+        }
+      ]
     },
     "past": {
       "title": "Past Jams",
@@ -202,14 +221,15 @@
           "location": "Bengaluru, India",
           "url": "https://luma.com/n9xptnma",
           "repo": "https://github.com/DevRelJam/BLR-APR-2025",
-          "image": "assets/images/event-bengaluru-2025.png",
+          "image": "assets/images/gallery/gallery-bengaluru-2025-group.jpg",
           "status": "Past event",
           "summary": "The first DevRelJam gathered experienced practitioners alongside GIDS 2025 for talks, an AMA, and room-led discussion.",
           "highlights": [
             "The Devil Is In The Titles by Ram Iyengar",
             "AMA with James Ward, Ivar Grimstad, and Sourabh Bagrecha",
             "The Engaged Developer Funnel by Stephen Chin"
-          ]
+          ],
+          "imageAlt": "Bengaluru April 2025 DevRelJam group photo"
         },
         {
           "name": "DevRel Jam Hyderabad - August 2025",
@@ -218,14 +238,15 @@
           "location": "Hyderabad, India",
           "url": "https://lu.ma/umwjgbi2",
           "repo": "https://github.com/DevRelJam/HYD-AUG-2025",
-          "image": "assets/images/event-hyderabad-2025.png",
+          "image": "assets/images/gallery/gallery-bengaluru-2025-community.jpg",
           "status": "Past event",
           "summary": "A KubeCon India 2025-adjacent Jam designed around duo lightning talks, networking, and a practitioner panel.",
           "highlights": [
             "Four lightning talk sessions",
             "Technology integration showcases",
             "Panel discussion and networking"
-          ]
+          ],
+          "imageAlt": "DevRelJam community photo"
         },
         {
           "name": "DevRelJam Bengaluru - September 2025",
@@ -234,14 +255,15 @@
           "location": "Bengaluru, India",
           "url": "https://luma.com/t2yy3srv",
           "repo": "https://github.com/DevRelJam/BLR-SEP-2025",
-          "image": "assets/images/event-bengaluru-2025.png",
+          "image": "assets/images/gallery/gallery-bengaluru-2025-group.jpg",
           "status": "Past event",
           "summary": "A Bengaluru edition supported by Arbitrum India with business alignment, developer relations foundations, and a practitioner AMA.",
           "highlights": [
             "Aligning DevRel with the Business by Ben Greenberg",
             "AMA with Anuj Duggal, Ben Greenberg, Juhi Singh, Yashraj Nayak, and Shivay Lamba",
             "Introducing the Developer Relations Foundation by Aditya Oberai"
-          ]
+          ],
+          "imageAlt": "Bengaluru DevRelJam community group photo"
         },
         {
           "name": "DevRelJam Singapore - February 2026",
@@ -250,14 +272,15 @@
           "location": "Figma Singapore",
           "url": "https://luma.com/248dtdi3",
           "repo": "https://github.com/DevRelJam/SG-FEB-2026",
-          "image": "assets/images/event-singapore-feb-2026.png",
+          "image": "assets/images/gallery/gallery-singapore-2026-group.jpg",
           "status": "Past event",
           "summary": "A Singapore edition with social impact, DevRel identity, and GenAI-era developer relations on the agenda.",
           "highlights": [
             "Social Impact IS Your DevRel Strategy by Annie Mathew",
             "Hey DevRel, Who Do You Work For? by Donnie Prakoso",
             "DevRel in the Era of GenAI by Thu Ya Kyaw"
-          ]
+          ],
+          "imageAlt": "Singapore February 2026 DevRelJam group photo"
         },
         {
           "name": "DevRelJam Bengaluru - April 2026",
@@ -266,16 +289,42 @@
           "location": "Bengaluru, India",
           "url": "https://luma.com/bg8edxm7",
           "repo": "https://github.com/DevRelJam/BLR-APR-2026",
-          "image": "assets/images/event-bengaluru-2026.png",
+          "image": "assets/images/gallery/gallery-bengaluru-2026-group.jpg",
           "status": "Past event",
           "summary": "A GIDS 2026-adjacent edition with practitioner talks, an AMA block, and dinner-time community exchange.",
           "highlights": [
             "Business Skills DevRel Pros Should Learn by Atsushi Nakatsugawa",
             "Helping Developers Discover the Right AI Tools by Nimit Savant",
             "AMA with James Ward, Mary Grygleski, Brian Benz, and Yashraj Nayak"
-          ]
+          ],
+          "imageAlt": "Bengaluru April 2026 DevRelJam group photo"
         }
-      ]
+      ],
+      "filter": {
+        "ariaLabel": "Filter past DevRelJam events by city",
+        "allLabel": "All",
+        "countTemplate": "{count} {unit} shown",
+        "countSingular": "Jam",
+        "countPlural": "Jams"
+      },
+      "actions": {
+        "luma": {
+          "label": "View Luma page",
+          "icon": "calendar",
+          "variant": "quiet"
+        },
+        "repo": {
+          "label": "Jam repo",
+          "icon": "github",
+          "variant": "quiet"
+        }
+      },
+      "highlightCta": {
+        "label": "View community highlights",
+        "href": "https://www.linkedin.com/posts/yashrajnayak_kubecon-devreljam-developerrelations-ugcPost-7321035973578948610-xde9/",
+        "icon": "users",
+        "variant": "ghost"
+      }
     }
   },
   "cities": {
@@ -344,7 +393,9 @@
   "footer": {
     "note": "Thoughtful DevRel practitioners, useful conversations, fewer buzzwords.",
     "builtWith": "Built with vanilla JavaScript and hosted on GitHub Pages.",
-    "copyright": "DevRelJam"
+    "copyright": "DevRelJam",
+    "initiativePrefix": "An initiative by",
+    "copyrightTemplate": "© {year} {copyright}. All rights reserved."
   },
   "gallery": {
     "title": "Scenes from the Jams",
@@ -387,14 +438,20 @@
         "image": "assets/images/gallery/gallery-bengaluru-2025-group.jpg",
         "event": "DevRelJam Bengaluru - April 2025"
       }
-    ]
+    ],
+    "carousel": {
+      "ariaLabel": "DevRelJam photo carousel",
+      "previousLabel": "Previous photo",
+      "nextLabel": "Next photo",
+      "slideLabelTemplate": "{title}, slide {index} of {total}",
+      "counterTemplate": "{index} of {total}",
+      "dotLabelTemplate": "Show photo {index}"
+    }
   },
   "people": {
     "title": "People Who Shaped the Room",
     "description": "Past Jams have brought together DevRel leaders, developer advocates, community builders, program managers, and technical marketing practitioners across the ecosystem.",
     "speakersTitle": "Featured speakers and moderators",
-    "attendeesTitle": "Featured attendees",
-    "attendeesNote": "Featured from approved/checked-in community registrations where role and organization were available.",
     "speakers": [
       {
         "name": "Annie Mathew",
@@ -522,48 +579,172 @@
         "image": "assets/images/speakers/speaker-stephen-chin.png",
         "profile": "https://github.com/steveonjava"
       }
-    ],
-    "featuredAttendees": [
-      {
-        "name": "Vikram Sahu",
-        "designation": "Developer Relations Engineer, Harness",
-        "event": "Bengaluru April 2025"
-      },
-      {
-        "name": "Teja Kummarikuntla",
-        "designation": "Developer Relations Engineer, Harness",
-        "event": "Bengaluru April 2025"
-      },
-      {
-        "name": "Raghuram Pandurangan",
-        "designation": "Sr. Manager, Developer Docs, PayU India",
-        "event": "Bengaluru April 2025"
-      },
-      {
-        "name": "Lakshit Pant",
-        "designation": "CPM, MVP Program, Microsoft",
-        "event": "Bengaluru April 2025"
-      },
-      {
-        "name": "Kartikay Sharma",
-        "designation": "Community Growth Manager, OutSystems",
-        "event": "Bengaluru April 2025"
-      },
-      {
-        "name": "Achanandhi M",
-        "designation": "Developer Advocate, Keploy",
-        "event": "Bengaluru April 2025"
-      },
-      {
-        "name": "Zameer Fouzan",
-        "designation": "Lead Developer Relations Engineer, New Relic",
-        "event": "Bengaluru April 2025"
-      },
-      {
-        "name": "Waqar Ahmed",
-        "designation": "DevRel and Growth, Lyzr AI",
-        "event": "Bengaluru April 2025"
-      }
     ]
+  },
+  "ui": {
+    "skipLink": "Skip to content",
+    "header": {
+      "homeLabel": "DevRelJam home",
+      "logoAlt": "DevRelJam logo",
+      "navLabel": "Primary navigation"
+    },
+    "hero": {
+      "logoAlt": "DevRelJam mark"
+    },
+    "theme": {
+      "switchToDark": "Switch to dark theme",
+      "switchToLight": "Switch to light theme"
+    },
+    "images": {
+      "headshotSuffix": "headshot"
+    }
+  },
+  "profile": {
+    "generatedComment": "AUTO-GENERATED: Edit data/config.json in DevRelJam/devreljam.github.io, then run scripts/generate-profile-readme.cjs.",
+    "coverImage": "/assets/DevRelJam%20Cover.png",
+    "badgeStyle": "for-the-badge",
+    "badges": [
+      {
+        "label": "Website",
+        "message": "devreljam.space",
+        "color": "2563eb",
+        "hrefKey": "website"
+      },
+      {
+        "label": "Luma",
+        "message": "Calendar",
+        "color": "111111",
+        "hrefKey": "luma"
+      },
+      {
+        "label": "Speakers",
+        "message": "Sessionize",
+        "color": "2563eb",
+        "hrefKey": "sessionize"
+      },
+      {
+        "label": "LinkedIn",
+        "message": "DevRelJam",
+        "color": "0A66C2",
+        "hrefKey": "linkedin",
+        "logo": "linkedin"
+      },
+      {
+        "label": "Instagram",
+        "message": "DevRelJam",
+        "color": "E4405F",
+        "hrefKey": "instagram",
+        "logo": "instagram"
+      },
+      {
+        "label": "GitHub",
+        "message": "Organization",
+        "color": "181717",
+        "hrefKey": "github",
+        "logo": "github"
+      }
+    ],
+    "headings": {
+      "about": "What is DevRelJam?",
+      "highlights": "What Makes a Jam Different?",
+      "upcoming": "Upcoming Jam",
+      "agenda": "Agenda",
+      "cities": "Where We Jam",
+      "past": "Past Jams",
+      "people": "Featured Speakers and Moderators",
+      "involved": "How to Get Involved",
+      "speak": "Speak at a Future Jam",
+      "codeOfConduct": "Code of Conduct",
+      "contact": "Contact"
+    },
+    "tables": {
+      "cityHeaders": [
+        "City",
+        "Status",
+        "Detail"
+      ],
+      "pastHeaders": [
+        "Jam",
+        "Date",
+        "Location",
+        "Repo",
+        "Luma"
+      ],
+      "peopleHeaders": [
+        "Speaker",
+        "Role",
+        "Jam"
+      ],
+      "upcomingHeaders": [
+        "Detail",
+        "Information"
+      ],
+      "upcomingRows": [
+        {
+          "label": "Date",
+          "valueKey": "date"
+        },
+        {
+          "label": "Time",
+          "valueKey": "timeWithTimezone"
+        },
+        {
+          "label": "Location",
+          "valueKey": "location"
+        },
+        {
+          "label": "Status",
+          "valueKey": "status"
+        },
+        {
+          "label": "Register",
+          "valueKey": "url",
+          "linkLabel": "Luma event"
+        }
+      ],
+      "repoLabel": "Repo",
+      "lumaLabel": "Luma"
+    },
+    "involvement": [
+      {
+        "label": "Attend",
+        "text": "Check the DevRelJam Luma calendar for upcoming Jams and RSVP.",
+        "hrefKey": "luma",
+        "hrefLabel": "DevRelJam Luma calendar"
+      },
+      {
+        "label": "Speak",
+        "text": "Submit a practitioner talk or discussion idea through Sessionize.",
+        "hrefKey": "sessionize",
+        "hrefLabel": "Sessionize"
+      },
+      {
+        "label": "Follow along",
+        "text": "Watch this GitHub organization and follow DevRelJam on LinkedIn and Instagram.",
+        "links": [
+          {
+            "hrefKey": "github",
+            "label": "GitHub"
+          },
+          {
+            "hrefKey": "linkedin",
+            "label": "LinkedIn"
+          },
+          {
+            "hrefKey": "instagram",
+            "label": "Instagram"
+          }
+        ]
+      }
+    ],
+    "codeOfConduct": {
+      "body": "We are committed to providing a welcoming and inclusive environment for all participants. Please review the Code of Conduct before participating in DevRelJam events or community spaces.",
+      "href": "https://github.com/DevRelJam/.github/blob/main/CODE_OF_CONDUCT.md",
+      "linkLabel": "Code of Conduct"
+    },
+    "contact": {
+      "initiativeTemplate": "DevRelJam is an initiative by {name}.",
+      "fallback": "For DevRelJam inquiries, reach out through the community links above."
+    }
   }
 }

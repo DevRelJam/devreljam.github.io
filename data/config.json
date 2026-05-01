@@ -29,12 +29,34 @@
     }
   },
   "navigation": [
-    { "label": "About", "href": "#about" },
-    { "label": "Upcoming", "href": "#events" },
-    { "label": "Format", "href": "#format" },
-    { "label": "Past", "href": "#past" },
-    { "label": "Cities", "href": "#cities" },
-    { "label": "Speakers", "href": "#speakers" }
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Upcoming",
+      "href": "#events"
+    },
+    {
+      "label": "Past",
+      "href": "#past"
+    },
+    {
+      "label": "Gallery",
+      "href": "#gallery"
+    },
+    {
+      "label": "People",
+      "href": "#people"
+    },
+    {
+      "label": "Cities",
+      "href": "#cities"
+    },
+    {
+      "label": "Speak",
+      "href": "#speakers"
+    }
   ],
   "hero": {
     "headline": "DevRelJam",
@@ -51,9 +73,18 @@
       "icon": "mic"
     },
     "stats": [
-      { "value": "5", "label": "cities mapped" },
-      { "value": "4+", "label": "past Jams tracked" },
-      { "value": "Free", "label": "approval-based RSVP" }
+      {
+        "value": "5",
+        "label": "cities mapped"
+      },
+      {
+        "value": "5+",
+        "label": "past Jams tracked"
+      },
+      {
+        "value": "Free",
+        "label": "approval-based RSVP"
+      }
     ],
     "links": [
       {
@@ -148,7 +179,9 @@
         "Two practitioner sessions",
         "Ask Me Anything discussion",
         "Closing remarks and community time"
-      ]
+      ],
+      "repo": "https://github.com/DevRelJam/SG-SEP-2026",
+      "template": "https://github.com/DevRelJam/jam-template"
     },
     "embed": {
       "src": "https://luma.com/embed/calendar/cal-XxuFr8KES5quRte/events?lt=light",
@@ -165,9 +198,10 @@
         {
           "name": "DevRelJam Bengaluru - April 2025",
           "city": "Bengaluru",
-          "date": "April 2025",
+          "date": "April 22, 2025",
           "location": "Bengaluru, India",
           "url": "https://luma.com/n9xptnma",
+          "repo": "https://github.com/DevRelJam/BLR-APR-2025",
           "image": "assets/images/event-bengaluru-2025.png",
           "status": "Past event",
           "summary": "The first DevRelJam gathered experienced practitioners alongside GIDS 2025 for talks, an AMA, and room-led discussion.",
@@ -183,6 +217,7 @@
           "date": "August 7, 2025",
           "location": "Hyderabad, India",
           "url": "https://lu.ma/umwjgbi2",
+          "repo": "https://github.com/DevRelJam/HYD-AUG-2025",
           "image": "assets/images/event-hyderabad-2025.png",
           "status": "Past event",
           "summary": "A KubeCon India 2025-adjacent Jam designed around duo lightning talks, networking, and a practitioner panel.",
@@ -193,11 +228,28 @@
           ]
         },
         {
+          "name": "DevRelJam Bengaluru - September 2025",
+          "city": "Bengaluru",
+          "date": "September 17, 2025",
+          "location": "Bengaluru, India",
+          "url": "https://luma.com/t2yy3srv",
+          "repo": "https://github.com/DevRelJam/BLR-SEP-2025",
+          "image": "assets/images/event-bengaluru-2025.png",
+          "status": "Past event",
+          "summary": "A Bengaluru edition supported by Arbitrum India with business alignment, developer relations foundations, and a practitioner AMA.",
+          "highlights": [
+            "Aligning DevRel with the Business by Ben Greenberg",
+            "AMA with Anuj Duggal, Ben Greenberg, Juhi Singh, Yashraj Nayak, and Shivay Lamba",
+            "Introducing the Developer Relations Foundation by Aditya Oberai"
+          ]
+        },
+        {
           "name": "DevRelJam Singapore - February 2026",
           "city": "Singapore",
           "date": "February 26, 2026",
           "location": "Figma Singapore",
           "url": "https://luma.com/248dtdi3",
+          "repo": "https://github.com/DevRelJam/SG-FEB-2026",
           "image": "assets/images/event-singapore-feb-2026.png",
           "status": "Past event",
           "summary": "A Singapore edition with social impact, DevRel identity, and GenAI-era developer relations on the agenda.",
@@ -213,6 +265,7 @@
           "date": "April 23, 2026",
           "location": "Bengaluru, India",
           "url": "https://luma.com/bg8edxm7",
+          "repo": "https://github.com/DevRelJam/BLR-APR-2026",
           "image": "assets/images/event-bengaluru-2026.png",
           "status": "Past event",
           "summary": "A GIDS 2026-adjacent edition with practitioner talks, an AMA block, and dinner-time community exchange.",
@@ -231,23 +284,23 @@
     "items": [
       {
         "name": "Singapore",
-        "status": "Upcoming",
-        "detail": "September 29, 2026"
+        "status": "Past and upcoming editions",
+        "detail": "February 2026 and September 2026"
       },
       {
         "name": "Bengaluru",
-        "status": "Past edition",
-        "detail": "Hosted alongside GIDS 2026"
-      },
-      {
-        "name": "Mumbai",
-        "status": "Past edition",
-        "detail": "DevRel community gathering"
+        "status": "Past editions",
+        "detail": "April 2025, September 2025, and April 2026"
       },
       {
         "name": "Hyderabad",
         "status": "Past edition",
-        "detail": "Practitioner exchange"
+        "detail": "KubeCon India 2025-adjacent practitioner exchange"
+      },
+      {
+        "name": "Mumbai",
+        "status": "Tracked city",
+        "detail": "Future community opportunity"
       },
       {
         "name": "San Francisco Bay Area",
@@ -292,5 +345,225 @@
     "note": "Thoughtful DevRel practitioners, useful conversations, fewer buzzwords.",
     "builtWith": "Built with vanilla JavaScript and hosted on GitHub Pages.",
     "copyright": "DevRelJam"
+  },
+  "gallery": {
+    "title": "Scenes from the Jams",
+    "description": "A curated look at the room energy from recent DevRelJam editions, selected from the community photo albums.",
+    "sourceLabel": "Google Photos community albums",
+    "items": [
+      {
+        "title": "Bengaluru April 2026",
+        "caption": "Community group photo after the GIDS-adjacent Jam.",
+        "image": "assets/images/gallery/gallery-bengaluru-2026-group.jpg",
+        "event": "DevRelJam Bengaluru - April 2026"
+      },
+      {
+        "title": "Bengaluru April 2026",
+        "caption": "Practitioner session in a packed room of DevRel peers.",
+        "image": "assets/images/gallery/gallery-bengaluru-2026-session.jpg",
+        "event": "DevRelJam Bengaluru - April 2026"
+      },
+      {
+        "title": "Bengaluru April 2026",
+        "caption": "AMA-style discussion with the audience close to the speakers.",
+        "image": "assets/images/gallery/gallery-bengaluru-2026-room.jpg",
+        "event": "DevRelJam Bengaluru - April 2026"
+      },
+      {
+        "title": "Singapore February 2026",
+        "caption": "The Singapore room at Figma, captured after the evening Jam.",
+        "image": "assets/images/gallery/gallery-singapore-2026-group.jpg",
+        "event": "DevRelJam Singapore - February 2026"
+      },
+      {
+        "title": "Singapore February 2026",
+        "caption": "Speaker session on DevRel practice in the GenAI era.",
+        "image": "assets/images/gallery/gallery-singapore-2026-speaker.jpg",
+        "event": "DevRelJam Singapore - February 2026"
+      },
+      {
+        "title": "Bengaluru April 2025",
+        "caption": "The first DevRelJam brought the India DevRel community together.",
+        "image": "assets/images/gallery/gallery-bengaluru-2025-group.jpg",
+        "event": "DevRelJam Bengaluru - April 2025"
+      }
+    ]
+  },
+  "people": {
+    "title": "People Who Shaped the Room",
+    "description": "Past Jams have brought together DevRel leaders, developer advocates, community builders, program managers, and technical marketing practitioners across the ecosystem.",
+    "speakersTitle": "Featured speakers and moderators",
+    "attendeesTitle": "Featured attendees",
+    "attendeesNote": "Featured from approved/checked-in community registrations where role and organization were available.",
+    "speakers": [
+      {
+        "name": "Annie Mathew",
+        "designation": "Founder and Executive Director, Pivot Project",
+        "event": "Singapore February 2026",
+        "image": "assets/images/speakers/speaker-annie-mathew.png",
+        "profile": "https://findyourpivot.org/"
+      },
+      {
+        "name": "Donnie Prakoso",
+        "designation": "Principal Developer Advocate, AWS",
+        "event": "Singapore February 2026",
+        "image": "assets/images/speakers/speaker-donnie-prakoso.png",
+        "profile": "https://github.com/donnieprakoso"
+      },
+      {
+        "name": "Thu Ya Kyaw",
+        "designation": "Senior Developer Relations Engineer, Google",
+        "event": "Singapore February 2026",
+        "image": "assets/images/speakers/speaker-thu-ya-kyaw.jpg",
+        "profile": "https://sessionize.com/thuyakyaw/"
+      },
+      {
+        "name": "Atsushi Nakatsugawa",
+        "designation": "Developer Advocate, CodeRabbit",
+        "event": "Bengaluru April 2026",
+        "image": "assets/images/speakers/speaker-atsushi-nakatsugawa.jpg",
+        "profile": "https://github.com/goofmint"
+      },
+      {
+        "name": "Nimit Savant",
+        "designation": "Developer Evangelist, DevRev",
+        "event": "Bengaluru April 2026",
+        "image": "assets/images/speakers/speaker-nimit-savant.jpg",
+        "profile": "https://dev.to/nimit2801"
+      },
+      {
+        "name": "Mary Grygleski",
+        "designation": "Vice President, AI Collective",
+        "event": "Bengaluru April 2026",
+        "image": "assets/images/speakers/speaker-mary-grygleski.jpg",
+        "profile": "https://github.com/mgrygles"
+      },
+      {
+        "name": "Brian Benz",
+        "designation": "Principal AI Advocate, Microsoft",
+        "event": "Bengaluru April 2026",
+        "image": "assets/images/speakers/speaker-brian-benz.jpg",
+        "profile": "https://github.com/bbenz"
+      },
+      {
+        "name": "Ben Greenberg",
+        "designation": "Senior Developer Relations Engineer, Arbitrum",
+        "event": "Bengaluru September 2025",
+        "image": "assets/images/speakers/speaker-ben-greenberg.png",
+        "profile": "https://sessionize.com/ben-greenberg/"
+      },
+      {
+        "name": "Anuj Duggal",
+        "designation": "Engineering Program Manager, Google Search",
+        "event": "Bengaluru September 2025",
+        "image": "assets/images/speakers/speaker-anuj-duggal.jpg",
+        "profile": "https://in.linkedin.com/in/anujduggal21"
+      },
+      {
+        "name": "Juhi Singh",
+        "designation": "Technical Product Marketing Manager, Kong",
+        "event": "Bengaluru September 2025",
+        "image": "assets/images/speakers/speaker-juhi-singh.jpg",
+        "profile": "https://konghq.com/blog/news/kong-agentic-ai-hackathon-2025"
+      },
+      {
+        "name": "Aditya Oberai",
+        "designation": "Developer Relations Lead, Appwrite",
+        "event": "Bengaluru September 2025",
+        "image": "assets/images/speakers/speaker-aditya-oberai.jpg",
+        "profile": "https://github.com/adityaoberai"
+      },
+      {
+        "name": "Shivay Lamba",
+        "designation": "Senior Developer Experience Engineer, Couchbase",
+        "event": "Bengaluru September 2025",
+        "image": "assets/images/speakers/speaker-shivay-lamba.jpg",
+        "profile": "https://github.com/shivaylamba"
+      },
+      {
+        "name": "Yashraj Nayak",
+        "designation": "Program Manager, Developer Relations",
+        "event": "DevRelJam host and moderator",
+        "image": "assets/images/speakers/speaker-yashraj-nayak.jpg",
+        "profile": "https://github.com/yashrajnayak"
+      },
+      {
+        "name": "Ram Iyengar",
+        "designation": "Chief Evangelist, Linux Foundation",
+        "event": "Bengaluru April 2025",
+        "image": "assets/images/speakers/speaker-ram-iyengar.jpg",
+        "profile": "https://github.com/ramiyengar"
+      },
+      {
+        "name": "James Ward",
+        "designation": "Principal Developer Advocate, AWS",
+        "event": "Bengaluru April 2025 and April 2026",
+        "image": "assets/images/speakers/speaker-james-ward.jpg",
+        "profile": "https://github.com/jamesward"
+      },
+      {
+        "name": "Ivar Grimstad",
+        "designation": "Developer Advocate, Eclipse Foundation",
+        "event": "Bengaluru April 2025",
+        "image": "assets/images/speakers/speaker-ivar-grimstad.png",
+        "profile": "https://github.com/ivargrimstad"
+      },
+      {
+        "name": "Sourabh Bagrecha",
+        "designation": "Senior Developer Advocate, MongoDB",
+        "event": "Bengaluru April 2025",
+        "image": "assets/images/speakers/speaker-sourabh-bagrecha.png",
+        "profile": "https://sessionize.com/sourabhbagrecha/"
+      },
+      {
+        "name": "Stephen Chin",
+        "designation": "VP of Developer Relations, Neo4j",
+        "event": "Bengaluru April 2025",
+        "image": "assets/images/speakers/speaker-stephen-chin.png",
+        "profile": "https://github.com/steveonjava"
+      }
+    ],
+    "featuredAttendees": [
+      {
+        "name": "Vikram Sahu",
+        "designation": "Developer Relations Engineer, Harness",
+        "event": "Bengaluru April 2025"
+      },
+      {
+        "name": "Teja Kummarikuntla",
+        "designation": "Developer Relations Engineer, Harness",
+        "event": "Bengaluru April 2025"
+      },
+      {
+        "name": "Raghuram Pandurangan",
+        "designation": "Sr. Manager, Developer Docs, PayU India",
+        "event": "Bengaluru April 2025"
+      },
+      {
+        "name": "Lakshit Pant",
+        "designation": "CPM, MVP Program, Microsoft",
+        "event": "Bengaluru April 2025"
+      },
+      {
+        "name": "Kartikay Sharma",
+        "designation": "Community Growth Manager, OutSystems",
+        "event": "Bengaluru April 2025"
+      },
+      {
+        "name": "Achanandhi M",
+        "designation": "Developer Advocate, Keploy",
+        "event": "Bengaluru April 2025"
+      },
+      {
+        "name": "Zameer Fouzan",
+        "designation": "Lead Developer Relations Engineer, New Relic",
+        "event": "Bengaluru April 2025"
+      },
+      {
+        "name": "Waqar Ahmed",
+        "designation": "DevRel and Growth, Lyzr AI",
+        "event": "Bengaluru April 2025"
+      }
+    ]
   }
 }

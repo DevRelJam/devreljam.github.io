@@ -5,9 +5,11 @@ import {
   renderEvents,
   renderFooter,
   renderFormat,
+  renderGallery,
   renderHeader,
   renderHero,
   renderPastEvents,
+  renderPeople,
   renderSpeakers
 } from './modules/render.js';
 import { applySeo } from './modules/seo.js';
@@ -50,6 +52,8 @@ async function boot() {
     renderEvents(config);
     renderFormat(config);
     renderPastEvents(config);
+    renderGallery(config);
+    renderPeople(config);
     renderCities(config);
     renderSpeakers(config);
     renderFooter(config);

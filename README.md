@@ -10,7 +10,7 @@ Most editable site content lives in:
 
 - `data/config.json`
 
-Update this file for event copy, Luma links, Jam format copy, past event cards, city status, speaker CTA copy, social links, and SEO metadata.
+Update this file for event copy, Luma links, Jam format copy, past event cards, gallery images, featured people, city status, speaker CTA copy, social links, and SEO metadata.
 
 ## Run Locally
 
@@ -47,12 +47,13 @@ The GitHub organization profile README is generated from this website's source o
 
 - Source config: `data/config.json`
 - Generator: `scripts/generate-profile-readme.cjs`
-- Workflow: `.github/workflows/sync-profile-readme.yml`
+- Workflow repo: `DevRelJam/.github`
+- Workflow path: `.github/workflows/sync-profile-readme.yml`
 - Target file: `DevRelJam/.github/profile/README.md`
 
-When website source files change on `main`, the workflow validates `data/config.json`, generates the profile README, and commits to `DevRelJam/.github` only when the generated output differs.
+The workflow lives in `DevRelJam/.github` so it can update `profile/README.md` with that repository's default `GITHUB_TOKEN`. It clones this public website repository as read-only input, validates `data/config.json`, generates the profile README, and commits only when the generated output differs.
 
-The workflow needs a repository secret named `PROFILE_REPO_TOKEN` in `DevRelJam/devreljam.github.io`. Use a fine-grained GitHub token with read/write contents access to `DevRelJam/.github`.
+Because GitHub's default `GITHUB_TOKEN` is scoped to the repository where a workflow runs, the sync runs every 15 minutes and can also be started manually from `DevRelJam/.github`. No profile sync secret is required.
 
 Run the generator locally with:
 
@@ -67,5 +68,6 @@ Before each DevRelJam cycle:
 1. Update the current event block in `data/config.json`.
 2. Confirm the Luma calendar and Sessionize links are active.
 3. Refresh current and past event images in `assets/images/` when a new Jam is added.
-4. Confirm the profile README sync workflow succeeds after the website update.
-5. Check the deployed URL and social preview image after publishing.
+4. Add only approved public photos to `assets/images/gallery/` and public profile headshots to `assets/images/speakers/`.
+5. Confirm the profile README sync workflow in `DevRelJam/.github` succeeds after the scheduled or manual sync run.
+6. Check the deployed URL and social preview image after publishing.

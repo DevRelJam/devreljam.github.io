@@ -36,6 +36,15 @@ function makeActionLink(item, variant = 'ghost') {
   return link;
 }
 
+function initials(name) {
+  return String(name || '')
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join('');
+}
+
 export function renderHeader(config) {
   const root = qs('#site-header');
   const brand = document.createElement('a');
@@ -240,6 +249,9 @@ function makePastEventCard(event) {
 
   const actions = createEl('div', 'action-row action-row--left');
   actions.appendChild(makeActionLink({ label: 'View Luma page', href: event.url, icon: 'calendar' }, 'quiet'));
+  if (event.repo) {
+    actions.appendChild(makeActionLink({ label: 'Jam repo', href: event.repo, icon: 'github' }, 'quiet'));
+  }
 
   content.append(status, title, meta, summary, highlights, actions);
   card.append(visual, content);
@@ -295,6 +307,101 @@ export function renderPastEvents(config) {
 
   root.replaceChildren(title, copy, filters, count, cards, highlightRow);
   updateFilter('All');
+}
+
+export function renderGallery(config) {
+  const root = qs('#gallery');
+  const gallery = config.gallery;
+  if (!root || !gallery) return;
+
+  const title = createEl('h2', 'section-title', gallery.title);
+  const copy = createEl('p', 'section-copy section-copy--center', gallery.description);
+  const grid = createEl('div', 'gallery-grid');
+
+  gallery.items.forEach((item, index) => {
+    const card = createEl('article', index === 0 ? 'gallery-card gallery-card--featured' : 'gallery-card');
+    const visual = createEl('div', 'gallery-card__visual');
+    const image = createEl('img');
+    image.src = item.image;
+    image.alt = `${item.title}: ${item.caption}`;
+    image.loading = index < 2 ? 'eager' : 'lazy';
+    visual.appendChild(image);
+
+    const content = createEl('div', 'gallery-card__content');
+    content.append(
+      createEl('p', 'gallery-card__event', item.event),
+      createEl('h3', '', item.title),
+      createEl('p', '', item.caption)
+    );
+
+    card.append(visual, content);
+    grid.appendChild(card);
+  });
+
+  root.replaceChildren(title, copy, grid);
+}
+
+export function renderPeople(config) {
+  const root = qs('#people');
+  const people = config.people;
+  if (!root || !people) return;
+
+  const title = createEl('h2', 'section-title', people.title);
+  const copy = createEl('p', 'section-copy section-copy--center', people.description);
+
+  const speakerHeading = createEl('h3', 'subsection-title', people.speakersTitle);
+  const speakerGrid = createEl('div', 'person-grid');
+  (people.speakers || []).forEach((person) => {
+    const card = createEl('article', 'person-card');
+    const avatar = createEl('div', 'person-card__avatar');
+
+    if (person.image) {
+      const image = createEl('img');
+      image.src = person.image;
+      image.alt = `${person.name} headshot`;
+      image.loading = 'lazy';
+      avatar.appendChild(image);
+    } else {
+      avatar.appendChild(createEl('span', '', initials(person.name)));
+    }
+
+    const content = createEl('div', 'person-card__content');
+    const name = createEl('h4', '', '');
+    if (person.profile) {
+      const profileLink = safeExternalLink(person.profile);
+      profileLink.textContent = person.name;
+      name.appendChild(profileLink);
+    } else {
+      name.textContent = person.name;
+    }
+
+    content.append(
+      name,
+      createEl('p', 'person-card__role', person.designation),
+      createEl('p', 'person-card__event', person.event)
+    );
+
+    card.append(avatar, content);
+    speakerGrid.appendChild(card);
+  });
+
+  const attendeeHeading = createEl('h3', 'subsection-title subsection-title--spaced', people.attendeesTitle);
+  const attendeeNote = createEl('p', 'section-copy section-copy--center people-note', people.attendeesNote);
+  const attendeeGrid = createEl('div', 'attendee-grid');
+  (people.featuredAttendees || []).forEach((person) => {
+    const card = createEl('article', 'attendee-card');
+    const mark = createEl('span', 'attendee-card__mark', initials(person.name));
+    const content = createEl('div');
+    content.append(
+      createEl('h4', '', person.name),
+      createEl('p', 'attendee-card__role', person.designation),
+      createEl('p', 'attendee-card__event', person.event)
+    );
+    card.append(mark, content);
+    attendeeGrid.appendChild(card);
+  });
+
+  root.replaceChildren(title, copy, speakerHeading, speakerGrid, attendeeHeading, attendeeNote, attendeeGrid);
 }
 
 export function renderCities(config) {

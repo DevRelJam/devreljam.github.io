@@ -48,6 +48,10 @@ function list(items) {
   return (items || []).filter(Boolean).map((item) => `- ${item}`).join('\n');
 }
 
+function mdLink(label, url) {
+  return url ? `[${escapeTableCell(label)}](${url})` : escapeTableCell(label);
+}
+
 function table(rows) {
   if (!rows.length) return '';
 
@@ -81,6 +85,7 @@ function generateProfileReadme(config) {
   const events = config.events || {};
   const currentEvent = events.current || {};
   const speakers = config.speakers || {};
+  const people = config.people || {};
   const community = config.community || {};
   const cities = config.cities?.items || [];
   const pastEvents = events.past?.items || [];
@@ -108,9 +113,27 @@ function generateProfileReadme(config) {
   const cityTable = table(cities);
   const pastTable = pastEvents.length
     ? [
-        '| Jam | Date | Location |',
+        '| Jam | Date | Location | Repo | Luma |',
+        '| --- | --- | --- | --- | --- |',
+        ...pastEvents.map((event) => {
+          const repo = event.repo ? `[Repo](${event.repo})` : '';
+          const luma = event.url ? `[Luma](${event.url})` : '';
+          return `| ${mdLink(event.name, event.repo || event.url)} | ${escapeTableCell(event.date)} | ${escapeTableCell(event.location)} | ${repo} | ${luma} |`;
+        })
+      ].join('\n')
+    : '';
+  const speakerTable = people.speakers?.length
+    ? [
+        '| Speaker | Role | Jam |',
         '| --- | --- | --- |',
-        ...pastEvents.map((event) => `| [${escapeTableCell(event.name)}](${event.url}) | ${escapeTableCell(event.date)} | ${escapeTableCell(event.location)} |`)
+        ...people.speakers.map((person) => `| ${mdLink(person.name, person.profile)} | ${escapeTableCell(person.designation)} | ${escapeTableCell(person.event)} |`)
+      ].join('\n')
+    : '';
+  const attendeeTable = people.featuredAttendees?.length
+    ? [
+        '| Attendee | Designation | Jam |',
+        '| --- | --- | --- |',
+        ...people.featuredAttendees.map((person) => `| ${escapeTableCell(person.name)} | ${escapeTableCell(person.designation)} | ${escapeTableCell(person.event)} |`)
       ].join('\n')
     : '';
 
@@ -154,7 +177,7 @@ ${config.cities?.description || ''}
 
 ${cityTable}
 
-${pastTable ? `## Past Jams\n\n${events.past?.description || 'Past DevRelJam editions are tracked from the same website config.'}\n\n${pastTable}\n\n` : ''}## How to Get Involved
+${pastTable ? `## Past Jams\n\n${events.past?.description || 'Past DevRelJam editions are tracked from the same website config.'}\n\n${pastTable}\n\n` : ''}${speakerTable ? `## Featured Speakers and Moderators\n\n${people.description || 'People who have shaped past DevRelJam rooms.'}\n\n${speakerTable}\n\n` : ''}${attendeeTable ? `## Featured Attendees\n\n${people.attendeesNote || 'Featured community attendees from previous Jams.'}\n\n${attendeeTable}\n\n` : ''}## How to Get Involved
 
 - **Attend:** Check the [DevRelJam Luma calendar](${lumaUrl}) for upcoming Jams and RSVP.
 - **Speak:** Submit a practitioner talk or discussion idea through [Sessionize](${sessionizeUrl}).

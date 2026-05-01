@@ -1,7 +1,10 @@
 @media (max-width: 980px) {
   .feature-grid,
   .city-grid,
-  .past-grid {
+  .past-grid,
+  .gallery-grid,
+  .person-grid,
+  .attendee-grid {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -102,7 +105,10 @@
 
   .feature-grid,
   .city-grid,
-  .past-grid {
+  .past-grid,
+  .gallery-grid,
+  .person-grid,
+  .attendee-grid {
     grid-template-columns: 1fr;
   }
 
@@ -111,8 +117,18 @@
   .format-panel,
   .embed-panel,
   .past-card__content,
+  .gallery-card__content,
   .speaker-panel {
     padding: 1.25rem;
+  }
+
+  .gallery-card--featured {
+    grid-column: span 1;
+  }
+
+  .gallery-card--featured .gallery-card__visual,
+  .gallery-card__visual {
+    aspect-ratio: 4 / 3;
   }
 
   .event-card {
@@ -150,6 +166,14 @@
     align-items: stretch;
     flex-direction: column;
     text-align: center;
+  }
+
+  .person-card {
+    grid-template-columns: 4.5rem 1fr;
+  }
+
+  .person-card__avatar {
+    width: 4.5rem;
   }
 
   .speaker-panel .section-title,

@@ -1,0 +1,170 @@
+{
+  "title": "People Who Shaped the Room",
+  "description": "Past Jams have brought together DevRel leaders, developer advocates, community builders, program managers, and technical marketing practitioners across the ecosystem.",
+  "speakersTitle": "Featured speakers and moderators",
+  "speakers": [
+    {
+      "name": "Annie Mathew",
+      "designation": "Founder and Executive Director, Pivot Project",
+      "event": "Singapore February 2026",
+      "image": "https://github.com/amathew007.png?size=160",
+      "profile": "https://www.linkedin.com/in/annpmathew/",
+      "github": "amathew007",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Donnie Prakoso",
+      "designation": "Principal Developer Advocate, AWS",
+      "event": "Singapore February 2026",
+      "image": "https://github.com/donnieprakoso.png?size=160",
+      "profile": "https://www.linkedin.com/in/donnieprakoso",
+      "github": "donnieprakoso",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Thu Ya Kyaw",
+      "designation": "Senior Developer Relations Engineer, Google",
+      "event": "Singapore February 2026",
+      "image": "https://github.com/thuyakyaw.png?size=160",
+      "profile": "https://www.linkedin.com/in/thuyakyaw/",
+      "github": "thuyakyaw",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Atsushi Nakatsugawa",
+      "designation": "Developer Advocate, CodeRabbit",
+      "event": "Bengaluru April 2026",
+      "image": "https://github.com/goofmint.png?size=160",
+      "profile": "https://www.linkedin.com/in/goofmint/",
+      "github": "goofmint",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Nimit Savant",
+      "designation": "Developer Evangelist, DevRev",
+      "event": "Bengaluru April 2026",
+      "image": "https://github.com/nimit2801.png?size=160",
+      "profile": "https://www.linkedin.com/in/nimitsavant/",
+      "github": "nimit2801",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Mary Grygleski",
+      "designation": "Vice President, AI Collective",
+      "event": "Bengaluru April 2026",
+      "image": "https://github.com/mgrygles.png?size=160",
+      "profile": "https://www.linkedin.com/in/mary-grygleski/",
+      "github": "mgrygles",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Brian Benz",
+      "designation": "Principal AI Advocate, Microsoft",
+      "event": "Bengaluru April 2026",
+      "image": "https://github.com/brianbenz.png?size=160",
+      "profile": "https://www.linkedin.com/in/brianbenz/",
+      "github": "brianbenz",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Ben Greenberg",
+      "designation": "Senior Developer Relations Engineer, Arbitrum",
+      "event": "Bengaluru September 2025",
+      "image": "https://github.com/hummusonrails.png?size=160",
+      "profile": "https://www.linkedin.com/in/hummusonrails/",
+      "github": "hummusonrails",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Anuj Duggal",
+      "designation": "Engineering Program Manager, Google Search",
+      "event": "Bengaluru September 2025",
+      "image": "https://github.com/anujduggal.png?size=160",
+      "profile": "https://www.linkedin.com/in/anujduggal21/",
+      "github": "anujduggal",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Juhi Singh",
+      "designation": "Technical Product Marketing Manager, Kong",
+      "event": "Bengaluru September 2025",
+      "image": "https://github.com/sjuhi.png?size=160",
+      "profile": "https://www.linkedin.com/in/sjuhi/",
+      "github": "sjuhi",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Aditya Oberai",
+      "designation": "Developer Relations Lead, Appwrite",
+      "event": "Bengaluru September 2025",
+      "image": "https://github.com/adityaoberai.png?size=160",
+      "profile": "https://www.linkedin.com/in/adityaoberai1/",
+      "github": "adityaoberai",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Shivay Lamba",
+      "designation": "Senior Developer Experience Engineer, Couchbase",
+      "event": "Bengaluru September 2025",
+      "image": "https://github.com/shivaylamba.png?size=160",
+      "profile": "https://www.linkedin.com/in/shivaylamba/",
+      "github": "shivaylamba",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Yashraj Nayak",
+      "designation": "Program Manager, Developer Relations",
+      "event": "DevRelJam host and moderator",
+      "image": "https://github.com/yashrajnayak.png?size=160",
+      "profile": "https://www.linkedin.com/in/yashrajnayak/",
+      "github": "yashrajnayak",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Ram Iyengar",
+      "designation": "Chief Evangelist, Linux Foundation",
+      "event": "Bengaluru April 2025",
+      "image": "https://github.com/ramiyengar.png?size=160",
+      "profile": "https://in.linkedin.com/in/ram-iyengar",
+      "github": "ramiyengar",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "James Ward",
+      "designation": "Principal Developer Advocate, AWS",
+      "event": "Bengaluru April 2025 and April 2026",
+      "image": "https://github.com/jamesward.png?size=160",
+      "profile": "https://www.linkedin.com/in/jamesward",
+      "github": "jamesward",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Ivar Grimstad",
+      "designation": "Developer Advocate, Eclipse Foundation",
+      "event": "Bengaluru April 2025",
+      "image": "https://github.com/ivargrimstad.png?size=160",
+      "profile": "https://se.linkedin.com/in/ivargrimstad",
+      "github": "ivargrimstad",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Sourabh Bagrecha",
+      "designation": "Senior Developer Advocate, MongoDB",
+      "event": "Bengaluru April 2025",
+      "image": "https://github.com/sourabhbagrecha.png?size=160",
+      "profile": "https://in.linkedin.com/in/sourabhbagrecha",
+      "github": "sourabhbagrecha",
+      "imageSource": "github-avatar"
+    },
+    {
+      "name": "Stephen Chin",
+      "designation": "VP of Developer Relations, Neo4j",
+      "event": "Bengaluru April 2025",
+      "image": "https://github.com/steveonjava.png?size=160",
+      "profile": "https://www.linkedin.com/in/steveonjava",
+      "github": "steveonjava",
+      "imageSource": "github-avatar"
+    }
+  ],
+  "imagePolicy": "Speaker images are loaded from GitHub avatar URLs at runtime and are not stored in this repository."
+}

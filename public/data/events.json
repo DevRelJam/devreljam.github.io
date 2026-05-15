@@ -1,0 +1,175 @@
+{
+  "calendarUrl": "https://luma.com/devreljam",
+  "title": "Upcoming DevRelJam",
+  "description": "The next Jam is live on Luma. Registration is free and mandatory, with host approval required.",
+  "nextEventStrategy": {
+    "mode": "first-future-by-startDate",
+    "emptyState": {
+      "title": "The next DevRelJam is being planned.",
+      "description": "When no upcoming Jam is scheduled, the site shifts to the Luma calendar, speaker submissions, and past-event highlights instead of showing stale event details.",
+      "actions": [
+        {
+          "label": "Follow the Luma calendar",
+          "href": "https://luma.com/devreljam",
+          "icon": "calendar"
+        },
+        {
+          "label": "Apply on Sessionize",
+          "href": "https://sessionize.com/devreljam/",
+          "icon": "mic"
+        }
+      ]
+    }
+  },
+  "upcoming": [
+    {
+      "id": "singapore-2026-09",
+      "name": "DevRelJam Singapore - September 2026",
+      "shortName": "DevRelJam Singapore",
+      "city": "Singapore",
+      "date": "Tuesday, September 29, 2026",
+      "dateShort": "Sept 29, 2026",
+      "startDate": "2026-09-29T18:00:00+08:00",
+      "endDate": "2026-09-29T21:00:00+08:00",
+      "time": "6:00 PM - 9:00 PM",
+      "timezone": "Singapore Time",
+      "location": "Singapore",
+      "status": "Approval required",
+      "description": "Join DevRel practitioners for a focused evening of peer-led sessions, an Ask Me Anything block, and practical conversations about developer advocacy, community, and engagement.",
+      "agenda": [
+        "Welcome note",
+        "Two practitioner sessions",
+        "Ask Me Anything discussion",
+        "Closing remarks and community time"
+      ],
+      "url": "https://luma.com/wnygmi8l",
+      "repo": "https://github.com/DevRelJam/SG-SEP-2026",
+      "template": "https://github.com/DevRelJam/jam-template",
+      "image": "/assets/images/event-singapore-2026.png",
+      "imageAlt": "DevRelJam Singapore September 2026 event cover graphic",
+      "schema": {
+        "startDate": "2026-09-29T18:00:00+08:00",
+        "endDate": "2026-09-29T21:00:00+08:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "attendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "offerAvailability": "https://schema.org/InStock",
+        "offerPrice": "0",
+        "offerCurrency": "USD"
+      },
+      "actions": [
+        {
+          "label": "Register on Luma",
+          "href": "https://luma.com/wnygmi8l",
+          "icon": "calendar",
+          "variant": "solid"
+        },
+        {
+          "label": "Full calendar",
+          "href": "https://luma.com/devreljam",
+          "icon": "users",
+          "variant": "ghost"
+        }
+      ]
+    }
+  ],
+  "past": {
+    "title": "Past Jams",
+    "description": "Browse previous DevRelJam editions, agendas, and speaker themes from cities where the community has already gathered.",
+    "highlightUrl": "https://www.linkedin.com/posts/yashrajnayak_kubecon-devreljam-developerrelations-ugcPost-7321035973578948610-xde9/",
+    "items": [
+      {
+        "name": "DevRelJam Bengaluru - April 2026",
+        "city": "Bengaluru",
+        "date": "April 23, 2026",
+        "location": "Bengaluru, India",
+        "url": "https://luma.com/bg8edxm7",
+        "repo": "https://github.com/DevRelJam/BLR-APR-2026",
+        "image": "/assets/images/gallery/gallery-bengaluru-2026-group.jpg",
+        "status": "Past event",
+        "summary": "A GIDS 2026-adjacent edition with practitioner talks, an AMA block, and dinner-time community exchange.",
+        "highlights": [
+          "Business Skills DevRel Pros Should Learn by Atsushi Nakatsugawa",
+          "Helping Developers Discover the Right AI Tools by Nimit Savant",
+          "AMA with James Ward, Mary Grygleski, Brian Benz, and Yashraj Nayak"
+        ],
+        "imageAlt": "Bengaluru April 2026 DevRelJam group photo"
+      },
+      {
+        "name": "DevRelJam Singapore - February 2026",
+        "city": "Singapore",
+        "date": "February 26, 2026",
+        "location": "Figma Singapore",
+        "url": "https://luma.com/248dtdi3",
+        "repo": "https://github.com/DevRelJam/SG-FEB-2026",
+        "image": "/assets/images/gallery/gallery-singapore-2026-group.jpg",
+        "status": "Past event",
+        "summary": "A Singapore edition with social impact, DevRel identity, and GenAI-era developer relations on the agenda.",
+        "highlights": [
+          "Social Impact IS Your DevRel Strategy by Annie Mathew",
+          "Hey DevRel, Who Do You Work For? by Donnie Prakoso",
+          "DevRel in the Era of GenAI by Thu Ya Kyaw"
+        ],
+        "imageAlt": "Singapore February 2026 DevRelJam group photo"
+      },
+      {
+        "name": "DevRelJam Bengaluru - September 2025",
+        "city": "Bengaluru",
+        "date": "September 17, 2025",
+        "location": "Bengaluru, India",
+        "url": "https://luma.com/t2yy3srv",
+        "repo": "https://github.com/DevRelJam/BLR-SEP-2025",
+        "image": "/assets/images/gallery/gallery-bengaluru-2025-group.jpg",
+        "status": "Past event",
+        "summary": "A Bengaluru edition supported by Arbitrum India with business alignment, developer relations foundations, and a practitioner AMA.",
+        "highlights": [
+          "Aligning DevRel with the Business by Ben Greenberg",
+          "AMA with Anuj Duggal, Ben Greenberg, Juhi Singh, Yashraj Nayak, and Shivay Lamba",
+          "Introducing the Developer Relations Foundation by Aditya Oberai"
+        ],
+        "imageAlt": "Bengaluru DevRelJam community group photo"
+      },
+      {
+        "name": "DevRelJam Bengaluru - April 2025",
+        "city": "Bengaluru",
+        "date": "April 22, 2025",
+        "location": "Bengaluru, India",
+        "url": "https://luma.com/n9xptnma",
+        "repo": "https://github.com/DevRelJam/BLR-APR-2025",
+        "image": "/assets/images/gallery/gallery-bengaluru-2025-group.jpg",
+        "status": "Past event",
+        "summary": "The first DevRelJam gathered experienced practitioners alongside GIDS 2025 for talks, an AMA, and room-led discussion.",
+        "highlights": [
+          "The Devil Is In The Titles by Ram Iyengar",
+          "AMA with James Ward, Ivar Grimstad, and Sourabh Bagrecha",
+          "The Engaged Developer Funnel by Stephen Chin"
+        ],
+        "imageAlt": "Bengaluru April 2025 DevRelJam group photo"
+      }
+    ],
+    "filter": {
+      "ariaLabel": "Filter past DevRelJam events by city",
+      "allLabel": "All",
+      "countTemplate": "{count} {unit} shown",
+      "countSingular": "Jam",
+      "countPlural": "Jams"
+    },
+    "actions": {
+      "luma": {
+        "label": "View Luma page",
+        "icon": "calendar",
+        "variant": "quiet"
+      },
+      "repo": {
+        "label": "Jam repo",
+        "icon": "github",
+        "variant": "quiet"
+      }
+    },
+    "highlightCta": {
+      "label": "View community highlights",
+      "href": "https://www.linkedin.com/posts/yashrajnayak_kubecon-devreljam-developerrelations-ugcPost-7321035973578948610-xde9/",
+      "icon": "users",
+      "variant": "ghost"
+    }
+  }
+}

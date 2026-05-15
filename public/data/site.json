@@ -1,0 +1,289 @@
+{
+  "site": {
+    "name": "DevRelJam",
+    "domain": "devreljam.space",
+    "url": "https://devreljam.space",
+    "language": "en",
+    "tagline": "Developer Relations, in real conversations.",
+    "description": "DevRelJam brings experienced Developer Relations practitioners together for practical, candid meetups around advocacy, community, engagement, and the technologies we represent.",
+    "keywords": [
+      "DevRel",
+      "Developer Relations",
+      "Developer Advocacy",
+      "Developer Community",
+      "Developer Events",
+      "DevRelJam"
+    ],
+    "brand": {
+      "logo": "/assets/images/devreljam-logo.png",
+      "cover": "/assets/images/devreljam-cover.png",
+      "favicon": "/assets/images/devreljam-logo.png",
+      "accent": "#2563eb"
+    },
+    "seo": {
+      "defaultTitle": "DevRelJam | Developer Relations Meetups",
+      "defaultDescription": "Peer-led DevRel meetups for practitioners to exchange wins, missteps, and field-tested ideas around advocacy, community, and engagement.",
+      "author": "Yashraj Nayak",
+      "ogImage": "/assets/images/devreljam-cover.png",
+      "ogImageAlt": "DevRelJam cover artwork"
+    }
+  },
+  "navigation": [
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Upcoming",
+      "href": "#events"
+    },
+    {
+      "label": "Past",
+      "href": "#past"
+    },
+    {
+      "label": "Gallery",
+      "href": "#gallery"
+    },
+    {
+      "label": "People",
+      "href": "#people"
+    },
+    {
+      "label": "Cities",
+      "href": "#cities"
+    },
+    {
+      "label": "Speak",
+      "href": "#speakers"
+    }
+  ],
+  "hero": {
+    "headline": "DevRelJam",
+    "subheadline": "Developer Relations, in real conversations.",
+    "body": "A practitioner-first community initiative where DevRel folks jam on what worked, what did not, and what we are learning while building developer communities.",
+    "primaryCta": {
+      "label": "See Luma Calendar",
+      "href": "https://luma.com/devreljam",
+      "icon": "calendar"
+    },
+    "secondaryCta": {
+      "label": "Call for Speakers",
+      "href": "https://sessionize.com/devreljam/",
+      "icon": "mic"
+    },
+    "stats": [
+      {
+        "value": "2",
+        "label": "cities hosted"
+      },
+      {
+        "value": "4",
+        "label": "past Jams tracked"
+      },
+      {
+        "value": "Free",
+        "label": "approval-based RSVP"
+      }
+    ],
+    "links": [
+      {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com/company/devreljam",
+        "icon": "linkedin"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://instagram.com/devreljam",
+        "icon": "instagram"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/devreljam",
+        "icon": "github"
+      }
+    ],
+    "nextEventEyebrowTemplate": "{city} · {dateShort} — {status}",
+    "noUpcomingEyebrow": "No next Jam announced yet",
+    "noUpcomingTitle": "The next DevRelJam is being planned.",
+    "noUpcomingBody": "When no upcoming Jam is scheduled, the site shifts to the Luma calendar, speaker submissions, and past-event highlights instead of showing stale event details.",
+    "noUpcomingPrimaryCta": {
+      "label": "Follow the Luma calendar",
+      "href": "https://luma.com/devreljam",
+      "icon": "calendar"
+    },
+    "noUpcomingSecondaryCta": {
+      "label": "Apply on Sessionize",
+      "href": "https://sessionize.com/devreljam/",
+      "icon": "mic"
+    }
+  },
+  "about": {
+    "title": "What is DevRelJam?",
+    "paragraphs": [
+      "DevRelJam is a first-of-its-kind meetup series for Developer Relations professionals and adjacent community builders. It is not a generic tech meetup; the room is built for people who have shipped programs, worked with developer audiences, and want sharper peer conversations.",
+      "Each Jam is intentionally practical: small enough for honest exchange, structured enough to leave with useful ideas, and timed around major tech gatherings so participation is easier for travelling DevRel teams."
+    ],
+    "highlights": [
+      {
+        "title": "Peer-led format",
+        "body": "Sessions prioritize field notes, lessons learned, and candid discussion over polished vendor talks."
+      },
+      {
+        "title": "Experienced audience",
+        "body": "Built for DevRel practitioners, community leads, advocates, program managers, and people in adjacent roles."
+      },
+      {
+        "title": "Conference-adjacent",
+        "body": "Jams happen when the right people are already in town, making high-quality hallway conversations easier."
+      }
+    ]
+  },
+  "format": {
+    "title": "How Jams Work",
+    "description": "Every Jam is built around a small, useful room: clear agenda, peer-led sessions, candid discussion, and enough community time for the best conversations to continue.",
+    "split": [
+      {
+        "value": "40%",
+        "label": "Practitioner sessions",
+        "body": "Field-tested talks from DevRel, advocacy, community, and adjacent technology leaders."
+      },
+      {
+        "value": "30%",
+        "label": "AMA and discussion",
+        "body": "Candid room-led exchange on programs, metrics, developer audiences, tooling, and mistakes."
+      },
+      {
+        "value": "30%",
+        "label": "Community time",
+        "body": "Intentional networking before, between, and after sessions so the best ideas do not stay on stage."
+      }
+    ],
+    "principles": [
+      {
+        "title": "Curated room",
+        "body": "Registration is free but approval-based so the room stays useful for working practitioners."
+      },
+      {
+        "title": "Conference-adjacent",
+        "body": "Jams are planned when DevRel teams are already near major developer gatherings."
+      },
+      {
+        "title": "Real notes over polish",
+        "body": "The format rewards lessons learned, honest tradeoffs, and operational details."
+      }
+    ],
+    "splitTitle": "What to expect",
+    "principlesTitle": "Principles"
+  },
+  "cities": {
+    "title": "Where We Jam",
+    "description": "DevRelJam is already mapped across cities where developer communities, conferences, and DevRel teams naturally gather.",
+    "items": [
+      {
+        "name": "Singapore",
+        "status": "Past and upcoming editions",
+        "detail": "February 2026 and September 2026"
+      },
+      {
+        "name": "Bengaluru",
+        "status": "Past editions",
+        "detail": "April 2025, September 2025, and April 2026"
+      }
+    ]
+  },
+  "community": {
+    "initiativeBy": {
+      "name": "Yashraj Nayak",
+      "href": "https://www.linkedin.com/in/yashrajnayak"
+    },
+    "socials": [
+      {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com/company/devreljam",
+        "icon": "linkedin"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://instagram.com/devreljam",
+        "icon": "instagram"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/devreljam",
+        "icon": "github"
+      }
+    ]
+  },
+  "speakerCta": {
+    "title": "Speak at a Future Jam",
+    "description": "Have a field-tested lesson, community experiment, program failure, or technical advocacy pattern that other DevRel practitioners should hear? Speaker submissions are open on Sessionize.",
+    "cta": {
+      "label": "Apply on Sessionize",
+      "href": "https://sessionize.com/devreljam/",
+      "icon": "mic"
+    }
+  },
+  "footer": {
+    "note": "Thoughtful DevRel practitioners, useful conversations, fewer buzzwords.",
+    "builtWith": "Built with vanilla JavaScript and hosted on GitHub Pages.",
+    "copyright": "DevRelJam",
+    "initiativePrefix": "An initiative by",
+    "copyrightTemplate": "© {year} {copyright}. All rights reserved."
+  },
+  "ui": {
+    "skipLink": "Skip to content",
+    "header": {
+      "homeLabel": "DevRelJam home",
+      "logoAlt": "DevRelJam logo",
+      "navLabel": "Primary navigation"
+    },
+    "hero": {
+      "logoAlt": "DevRelJam mark"
+    },
+    "theme": {
+      "switchToDark": "Switch to dark theme",
+      "switchToLight": "Switch to light theme"
+    },
+    "images": {
+      "headshotSuffix": "headshot"
+    },
+    "loading": "Loading DevRelJam site data...",
+    "loadErrorTitle": "Could not load DevRelJam data",
+    "loadErrorBody": "The site content is stored in JSON files. Refresh the page or check the /data files if this persists."
+  },
+  "cityMarquee": [
+    {
+      "name": "BENGALURU",
+      "tone": "plum"
+    },
+    {
+      "name": "SINGAPORE",
+      "tone": "teal"
+    },
+    {
+      "name": "BERLIN",
+      "tone": "amber"
+    },
+    {
+      "name": "SAN FRANCISCO",
+      "tone": "coral"
+    },
+    {
+      "name": "NEW YORK",
+      "tone": "forest"
+    },
+    {
+      "name": "LONDON",
+      "tone": "blue"
+    },
+    {
+      "name": "TOKYO",
+      "tone": "amber"
+    },
+    {
+      "name": "SYDNEY",
+      "tone": "coral"
+    }
+  ]
+}

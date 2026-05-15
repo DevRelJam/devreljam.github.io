@@ -1,0 +1,19 @@
+{
+  "showNavigation": true,
+  "showCityMarquee": true,
+  "showHeroStats": true,
+  "showAbout": true,
+  "showUpcoming": true,
+  "showFormat": true,
+  "showPastJams": true,
+  "showGallery": true,
+  "showPeople": true,
+  "showCities": true,
+  "showSpeakerCta": true,
+  "showFooter": true,
+  "heroUsesNextScheduledJam": true,
+  "showNoUpcomingFallback": true,
+  "showJamRepos": true,
+  "showLumaLinks": true,
+  "showSpeakerGithubAvatars": true
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Scenes from the Jams",
+  "description": "A curated look at the room energy from recent DevRelJam editions, selected from the community photo albums.",
+  "sourceLabel": "Google Photos community albums",
+  "items": [
+    {
+      "title": "Bengaluru April 2026",
+      "caption": "Community group photo after the GIDS-adjacent Jam.",
+      "image": "/assets/images/gallery/gallery-bengaluru-2026-group.jpg",
+      "event": "DevRelJam Bengaluru - April 2026"
+    },
+    {
+      "title": "Bengaluru April 2026",
+      "caption": "Practitioner session in a packed room of DevRel peers.",
+      "image": "/assets/images/gallery/gallery-bengaluru-2026-session.jpg",
+      "event": "DevRelJam Bengaluru - April 2026"
+    },
+    {
+      "title": "Bengaluru April 2026",
+      "caption": "AMA-style discussion with the audience close to the speakers.",
+      "image": "/assets/images/gallery/gallery-bengaluru-2026-room.jpg",
+      "event": "DevRelJam Bengaluru - April 2026"
+    },
+    {
+      "title": "Singapore February 2026",
+      "caption": "The Singapore room at Figma, captured after the evening Jam.",
+      "image": "/assets/images/gallery/gallery-singapore-2026-group.jpg",
+      "event": "DevRelJam Singapore - February 2026"
+    },
+    {
+      "title": "Singapore February 2026",
+      "caption": "Speaker session on DevRel practice in the GenAI era.",
+      "image": "/assets/images/gallery/gallery-singapore-2026-speaker.jpg",
+      "event": "DevRelJam Singapore - February 2026"
+    },
+    {
+      "title": "Bengaluru April 2025",
+      "caption": "The first DevRelJam brought the India DevRel community together.",
+      "image": "/assets/images/gallery/gallery-bengaluru-2025-group.jpg",
+      "event": "DevRelJam Bengaluru - April 2025"
+    }
+  ],
+  "carousel": {
+    "ariaLabel": "DevRelJam photo carousel",
+    "previousLabel": "Previous photo",
+    "nextLabel": "Next photo",
+    "slideLabelTemplate": "{title}, slide {index} of {total}",
+    "counterTemplate": "{index} of {total}",
+    "dotLabelTemplate": "Show photo {index}"
+  }
+}

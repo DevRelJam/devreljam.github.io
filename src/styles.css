@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: oklch(0.957 0.022 89);
+  --color-cream-deep: oklch(0.92 0.028 86);
+  --color-ink: oklch(0.18 0.015 60);
+  --color-ink-soft: oklch(0.42 0.02 60);
+  --color-line: oklch(0.85 0.02 80);
+
+  --color-jam-amber: oklch(0.82 0.16 75);
+  --color-jam-coral: oklch(0.74 0.16 35);
+  --color-jam-plum: oklch(0.42 0.13 350);
+  --color-jam-teal: oklch(0.55 0.09 195);
+  --color-jam-forest: oklch(0.38 0.07 160);
+  --color-jam-blue: oklch(0.42 0.11 250);
+
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-pill: 999px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--color-jam-amber); color: var(--color-ink); }
+
+/* Hand-drawn underline for italic display words */
+.scribble {
+  position: relative;
+  display: inline-block;
+}
+.scribble::after {
+  content: "";
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -0.18em;
+  height: 0.42em;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 18' preserveAspectRatio='none'><path d='M2 12 Q 50 2, 100 9 T 198 7' stroke='%231a1a1a' stroke-width='2' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+/* subtle grid backdrop like product folks */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, oklch(0.85 0.02 80 / 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.85 0.02 80 / 0.45) 1px, transparent 1px);
+  background-size: 88px 88px;
+}
+
+/* marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 32s linear infinite; }
+
+/* gentle float */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.floaty { animation: floaty 6s ease-in-out infinite; }

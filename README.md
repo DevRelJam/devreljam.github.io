@@ -12,6 +12,8 @@ All public website content is loaded from JSON at runtime:
 - `public/data/gallery.json`: previous Jam photos copied from the archived website/Luma-derived gallery assets, available behind feature flags.
 - `public/data/feature-flags.json`: section and behavior toggles. Gallery and pathway sections are currently disabled to keep the homepage focused on the editorial landing-page flow.
 
+Brand artwork lives in `public/assets/images/devreljam-avocado-logo.png` and `public/assets/images/devreljam-avocado-mark.png`.
+
 When no upcoming event is present in `events.json`, the site uses the configured `nextEventStrategy.emptyState` instead of showing stale event details.
 
 ## Architecture

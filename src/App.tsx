@@ -93,6 +93,9 @@ function useDocumentMetadata(content: AppContent | null, nextEvent?: JamEvent) {
       new URL(site.seo.ogImage, site.url).toString(),
     );
     setMeta("meta[name='twitter:image:alt']", "content", site.seo.ogImageAlt);
+    setMeta("link[rel='icon']", "href", site.brand.favicon);
+    const favicon = document.head.querySelector("link[rel='icon']");
+    favicon?.setAttribute("type", "image/png");
 
     const graph: Array<Record<string, unknown>> = [
       {
@@ -162,10 +165,12 @@ function SectionLabel({ children, className = "" }: { children: ReactNode; class
   );
 }
 
-function DJMark() {
+function BrandMark({ site }: { site: AppContent["site"]["site"] }) {
+  const mark = site.brand.mark || site.brand.logo;
+
   return (
-    <span className="grid h-9 w-9 place-items-center rounded-full bg-ink font-display text-lg font-bold italic text-jam-amber">
-      DJ
+    <span className="grid h-10 w-10 overflow-hidden rounded-full bg-cream-deep ring-1 ring-ink/10">
+      <img src={mark} alt="" className="h-full w-full object-cover" loading="eager" />
     </span>
   );
 }
@@ -204,7 +209,7 @@ function Header({ content }: { content: AppContent }) {
         className="mx-auto flex w-full max-w-6xl items-center justify-between rounded-pill border border-ink/10 bg-cream/85 px-5 py-3 shadow-[0_2px_24px_-12px_rgba(0,0,0,0.18)] backdrop-blur"
       >
         <a href="#top" className="flex items-center gap-2" aria-label={ui.header.homeLabel}>
-          <DJMark />
+          <BrandMark site={site} />
           <span className="font-display text-lg font-semibold tracking-tight">{site.name}</span>
         </a>
         <div className="hidden items-center gap-7 text-sm font-medium text-ink-soft md:flex">
@@ -729,7 +734,7 @@ function Footer({ content }: { content: AppContent }) {
     <footer className="border-t border-ink/10">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-12 md:flex-row md:items-center">
         <div className="flex items-center gap-3">
-          <DJMark />
+          <BrandMark site={site} />
           <div>
             <div className="font-display font-semibold">{site.name}</div>
             <div className="text-xs text-ink-soft">{site.tagline}</div>

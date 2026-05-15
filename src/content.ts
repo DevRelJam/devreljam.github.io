@@ -17,6 +17,7 @@ export type SiteContent = {
     description: string;
     brand: {
       logo: string;
+      mark?: string;
       cover: string;
       favicon: string;
       accent?: string;

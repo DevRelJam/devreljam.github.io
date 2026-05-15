@@ -15,9 +15,10 @@
       "DevRelJam"
     ],
     "brand": {
-      "logo": "/assets/images/devreljam-logo.png",
+      "logo": "/assets/images/devreljam-avocado-logo.png",
+      "mark": "/assets/images/devreljam-avocado-mark.png",
       "cover": "/assets/images/devreljam-cover.png",
-      "favicon": "/assets/images/devreljam-logo.png",
+      "favicon": "/assets/images/devreljam-avocado-mark.png",
       "accent": "#2563eb"
     },
     "seo": {
@@ -286,11 +287,11 @@
     "skipLink": "Skip to content",
     "header": {
       "homeLabel": "DevRelJam home",
-      "logoAlt": "DevRelJam logo",
+      "logoAlt": "DevRelJam avocado logo",
       "navLabel": "Primary navigation"
     },
     "hero": {
-      "logoAlt": "DevRelJam mark"
+      "logoAlt": "DevRelJam avocado mark"
     },
     "theme": {
       "switchToDark": "Switch to dark theme",

@@ -19,6 +19,7 @@ export type SiteContent = {
       logo: string;
       cover: string;
       favicon: string;
+      accent?: string;
     };
     seo: {
       defaultTitle: string;
@@ -43,6 +44,18 @@ export type SiteContent = {
     stats: Array<{ value: string; label: string }>;
     links: Action[];
   };
+  pathways: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: Array<{
+      label: string;
+      title: string;
+      body: string;
+      tone: string;
+      action: Action;
+    }>;
+  };
   about: {
     title: string;
     paragraphs: string[];
@@ -62,6 +75,10 @@ export type SiteContent = {
     items: Array<{ name: string; status: string; detail: string }>;
   };
   community: {
+    initiativeBy?: {
+      name: string;
+      href: string;
+    };
     socials: Action[];
   };
   speakerCta: {
@@ -71,10 +88,28 @@ export type SiteContent = {
   };
   footer: {
     note: string;
+    builtWith: string;
     copyright: string;
+    initiativePrefix?: string;
     copyrightTemplate: string;
   };
   ui: {
+    skipLink: string;
+    header: {
+      homeLabel: string;
+      logoAlt: string;
+      navLabel: string;
+    };
+    hero: {
+      logoAlt: string;
+    };
+    theme?: {
+      switchToDark: string;
+      switchToLight: string;
+    };
+    images: {
+      headshotSuffix: string;
+    };
     loading: string;
     loadErrorTitle: string;
     loadErrorBody: string;
@@ -190,9 +225,13 @@ async function loadJson<T>(path: string): Promise<T> {
   return response.json() as Promise<T>;
 }
 
-export async function loadContent(): Promise<AppContent> {
+export function loadSiteContent(): Promise<SiteContent> {
+  return loadJson<SiteContent>("/data/site.json");
+}
+
+export async function loadContent(siteOverride?: SiteContent): Promise<AppContent> {
   const [site, events, people, gallery, flags] = await Promise.all([
-    loadJson<SiteContent>("/data/site.json"),
+    siteOverride ?? loadSiteContent(),
     loadJson<EventsContent>("/data/events.json"),
     loadJson<PeopleContent>("/data/people.json"),
     loadJson<GalleryContent>("/data/gallery.json"),

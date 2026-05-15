@@ -52,7 +52,7 @@ html, body {
   pointer-events: none;
 }
 
-/* subtle grid backdrop like product folks */
+/* Subtle grid backdrop for the editorial hero */
 .grid-bg {
   background-image:
     linear-gradient(to right, oklch(0.85 0.02 80 / 0.45) 1px, transparent 1px),

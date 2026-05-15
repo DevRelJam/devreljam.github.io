@@ -17,6 +17,8 @@ import {
   type IconName,
   type JamEvent,
   loadContent,
+  loadSiteContent,
+  type SiteContent,
 } from "./content";
 
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {
@@ -162,15 +164,19 @@ function IconAction({ action, className = "" }: { action: Action; className?: st
 
 function Header({ content, flags }: { content: AppContent; flags: FeatureFlags }) {
   const { site, navigation, hero } = content.site;
+  const { header } = content.site.ui;
   const primary = hero.primaryCta;
 
   if (!isEnabled(flags, "showNavigation")) return null;
 
   return (
     <header className="sticky top-4 z-50 px-4">
-      <nav className="mx-auto flex max-w-6xl items-center justify-between rounded-pill border border-ink/10 bg-cream/85 px-5 py-3 shadow-[0_2px_24px_-12px_rgba(0,0,0,0.18)] backdrop-blur">
-        <a href="#top" className="flex items-center gap-2" aria-label={site.name}>
-          <img src={site.brand.logo} alt="" className="h-9 w-9 rounded-full" />
+      <nav
+        aria-label={header.navLabel}
+        className="mx-auto flex max-w-6xl items-center justify-between rounded-pill border border-ink/10 bg-cream/85 px-5 py-3 shadow-[0_2px_24px_-12px_rgba(0,0,0,0.18)] backdrop-blur"
+      >
+        <a href="#top" className="flex items-center gap-2" aria-label={header.homeLabel}>
+          <img src={site.brand.logo} alt={header.logoAlt} className="h-9 w-9 rounded-full" />
           <span className="font-display text-lg font-semibold">{site.name}</span>
         </a>
         <div className="hidden items-center gap-7 text-sm font-medium text-ink-soft md:flex">
@@ -210,7 +216,11 @@ function Hero({
   const title = hasNext ? hero.headline : hero.noUpcomingTitle;
   const body = hasNext ? hero.body : hero.noUpcomingBody;
   const primary = hasNext
-    ? { label: nextEvent!.status, href: nextEvent!.url, icon: "calendar" }
+    ? nextEvent!.actions?.find((action) => action.variant === "solid") || {
+        label: nextEvent!.status,
+        href: nextEvent!.url,
+        icon: "calendar",
+      }
     : hero.noUpcomingPrimaryCta;
   const secondary = hasNext ? hero.secondaryCta : hero.noUpcomingSecondaryCta;
 
@@ -310,6 +320,46 @@ function About({ content }: { content: AppContent }) {
               );
             })}
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pathways({ content }: { content: AppContent }) {
+  const { pathways } = content.site;
+
+  return (
+    <section id="join" className="border-y border-ink/10 bg-cream-deep/60">
+      <div className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+        <div className="mb-14 grid gap-6 md:grid-cols-12 md:items-end">
+          <div className="md:col-span-7">
+            <SectionLabel>{pathways.eyebrow}</SectionLabel>
+            <h2 className="font-display text-4xl leading-[1.02] md:text-6xl">{pathways.title}</h2>
+          </div>
+          <p className="text-lg leading-relaxed text-ink-soft md:col-span-5">
+            {pathways.description}
+          </p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {pathways.items.map((item) => (
+            <article
+              key={item.title}
+              className="flex min-h-[20rem] flex-col justify-between rounded-2xl border border-ink/10 bg-cream p-6"
+            >
+              <div>
+                <Pill className={`${toneClass[item.tone] || toneClass.amber} mb-6`}>
+                  {item.label}
+                </Pill>
+                <h3 className="font-display text-2xl leading-tight">{item.title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-ink-soft">{item.body}</p>
+              </div>
+              <IconAction
+                action={item.action}
+                className="mt-8 inline-flex items-center gap-1.5 text-sm font-semibold transition hover:text-jam-plum"
+              />
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -564,7 +614,7 @@ function People({ content, flags }: { content: AppContent; flags: FeatureFlags }
               {isEnabled(flags, "showSpeakerGithubAvatars") ? (
                 <img
                   src={speaker.image}
-                  alt={`${speaker.name} headshot`}
+                  alt={`${speaker.name} ${content.site.ui.images.headshotSuffix}`}
                   loading="lazy"
                   className="h-14 w-14 rounded-full bg-cream-deep object-cover"
                 />
@@ -621,7 +671,7 @@ function Cities({ content }: { content: AppContent }) {
 function SpeakerCta({ content }: { content: AppContent }) {
   const { speakerCta } = content.site;
   return (
-    <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+    <section id="speakers" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
       <div className="relative overflow-hidden rounded-[2rem] bg-ink p-10 text-cream md:p-16">
         <div className="relative grid items-center gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
@@ -652,6 +702,7 @@ function Footer({ content }: { content: AppContent }) {
           <div>
             <div className="font-display font-semibold">{site.name}</div>
             <div className="text-xs text-ink-soft">{footer.note}</div>
+            <div className="mt-1 text-[11px] text-ink-soft">{footer.builtWith}</div>
           </div>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft">
@@ -675,13 +726,26 @@ function Footer({ content }: { content: AppContent }) {
 }
 
 export default function App() {
+  const [shell, setShell] = useState<SiteContent | null>(null);
   const [content, setContent] = useState<AppContent | null>(null);
   const [loadError, setLoadError] = useState<Error | null>(null);
 
   useEffect(() => {
-    loadContent()
-      .then(setContent)
+    let cancelled = false;
+
+    loadSiteContent()
+      .then((site) => {
+        if (!cancelled) setShell(site);
+        return loadContent(site);
+      })
+      .then((loadedContent) => {
+        if (!cancelled) setContent(loadedContent);
+      })
       .catch((error: Error) => setLoadError(error));
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const nextEvent = useMemo(
@@ -691,11 +755,15 @@ export default function App() {
   useDocumentMetadata(content, nextEvent);
 
   if (loadError) {
+    const ui = shell?.ui;
+
     return (
       <main className="grid min-h-screen place-items-center px-6 text-center">
         <div>
-          <h1 className="font-display text-4xl">Content could not load</h1>
-          <p className="mt-4 max-w-xl text-ink-soft">{loadError.message}</p>
+          <h1 className="font-display text-4xl">
+            {ui?.loadErrorTitle || "DevRelJam data unavailable"}
+          </h1>
+          <p className="mt-4 max-w-xl text-ink-soft">{ui?.loadErrorBody || loadError.message}</p>
         </div>
       </main>
     );
@@ -704,7 +772,9 @@ export default function App() {
   if (!content) {
     return (
       <main className="grid min-h-screen place-items-center px-6 text-center">
-        <p className="text-sm font-semibold uppercase text-ink-soft">Loading site data</p>
+        {shell?.ui.loading && (
+          <p className="text-sm font-semibold uppercase text-ink-soft">{shell.ui.loading}</p>
+        )}
       </main>
     );
   }
@@ -713,10 +783,17 @@ export default function App() {
 
   return (
     <div className="min-h-screen overflow-x-hidden text-ink">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-pill focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-cream"
+      >
+        {content.site.ui.skipLink}
+      </a>
       <Header content={content} flags={flags} />
-      <main>
+      <main id="main">
         <Hero content={content} nextEvent={nextEvent} flags={flags} />
         {isEnabled(flags, "showAbout") && <About content={content} />}
+        {isEnabled(flags, "showPathways") && <Pathways content={content} />}
         {isEnabled(flags, "showUpcoming") && (
           <Upcoming content={content} nextEvent={nextEvent} flags={flags} />
         )}

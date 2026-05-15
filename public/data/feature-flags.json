@@ -2,6 +2,7 @@
   "showNavigation": true,
   "showCityMarquee": true,
   "showHeroStats": true,
+  "showPathways": true,
   "showAbout": true,
   "showUpcoming": true,
   "showFormat": true,

@@ -34,6 +34,10 @@
       "href": "#about"
     },
     {
+      "label": "Join",
+      "href": "#join"
+    },
+    {
       "label": "Upcoming",
       "href": "#events"
     },
@@ -117,6 +121,57 @@
       "href": "https://sessionize.com/devreljam/",
       "icon": "mic"
     }
+  },
+  "pathways": {
+    "eyebrow": "Ways to plug in",
+    "title": "A community surface for the people moving DevRel forward.",
+    "description": "DevRelJam turns a practitioner community into clear ways to contribute: attend the room, share field notes, host a useful chapter, or reuse the public playbook.",
+    "items": [
+      {
+        "label": "Attend",
+        "title": "Join a curated Jam",
+        "body": "Come for focused sessions, practitioner AMAs, and hallway-quality conversations with DevRel peers.",
+        "tone": "amber",
+        "action": {
+          "label": "Follow the Luma calendar",
+          "href": "https://luma.com/devreljam",
+          "icon": "calendar"
+        }
+      },
+      {
+        "label": "Speak",
+        "title": "Share field notes",
+        "body": "Bring a lesson, failure, experiment, or framework that helps other advocates and community teams work better.",
+        "tone": "coral",
+        "action": {
+          "label": "Apply on Sessionize",
+          "href": "https://sessionize.com/devreljam/",
+          "icon": "mic"
+        }
+      },
+      {
+        "label": "Host",
+        "title": "Bring it to your city",
+        "body": "Use the Jam format around conferences, community weeks, and cities where DevRel teams already gather.",
+        "tone": "teal",
+        "action": {
+          "label": "Start from the template",
+          "href": "https://github.com/DevRelJam/jam-template",
+          "icon": "github"
+        }
+      },
+      {
+        "label": "Build",
+        "title": "Reuse the open playbook",
+        "body": "Past Jam repos document agendas, speaker lineups, and event structure so every edition can improve the next.",
+        "tone": "plum",
+        "action": {
+          "label": "Browse DevRelJam repos",
+          "href": "https://github.com/devreljam",
+          "icon": "github"
+        }
+      }
+    ]
   },
   "about": {
     "title": "What is DevRelJam?",
@@ -226,7 +281,7 @@
   },
   "footer": {
     "note": "Thoughtful DevRel practitioners, useful conversations, fewer buzzwords.",
-    "builtWith": "Built with vanilla JavaScript and hosted on GitHub Pages.",
+    "builtWith": "Config-driven static site, built with React and hosted on GitHub Pages.",
     "copyright": "DevRelJam",
     "initiativePrefix": "An initiative by",
     "copyrightTemplate": "© {year} {copyright}. All rights reserved."

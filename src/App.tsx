@@ -169,8 +169,8 @@ function BrandMark({ site }: { site: AppContent["site"]["site"] }) {
   const mark = site.brand.mark || site.brand.logo;
 
   return (
-    <span className="grid h-10 w-10 overflow-hidden rounded-full bg-cream-deep ring-1 ring-ink/10">
-      <img src={mark} alt="" className="h-full w-full object-cover" loading="eager" />
+    <span className="grid h-10 w-10 place-items-center">
+      <img src={mark} alt="" className="h-full w-full object-contain" loading="eager" />
     </span>
   );
 }

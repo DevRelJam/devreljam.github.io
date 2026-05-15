@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://devreljam.space">
-    <img src="public/assets/images/devreljam-avocado-logo.png" alt="DevRelJam avocado logo" width="360">
+    <img src="assets/readme/devreljam-github-banner.png" alt="DevRelJam GitHub repository banner with avocado mascot and Developer Relations tagline" width="100%">
   </a>
 </p>
 
@@ -38,6 +38,7 @@ Brand artwork lives in:
 
 - `public/assets/images/devreljam-avocado-logo.png`
 - `public/assets/images/devreljam-avocado-mark.png`
+- `assets/readme/devreljam-github-banner.png`
 
 When no upcoming event is present in `events.json`, the site uses `nextEventStrategy.emptyState` instead of showing stale event details.
 

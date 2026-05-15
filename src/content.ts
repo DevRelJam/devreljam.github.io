@@ -58,11 +58,15 @@ export type SiteContent = {
   };
   about: {
     title: string;
+    heading?: string;
+    headingEmphasis?: string;
     paragraphs: string[];
     highlights: Array<{ title: string; body: string }>;
   };
   format: {
     title: string;
+    heading?: string;
+    headingEmphasis?: string;
     description: string;
     splitTitle: string;
     principlesTitle: string;
@@ -71,8 +75,9 @@ export type SiteContent = {
   };
   cities: {
     title: string;
+    descriptionEmphasis?: string;
     description: string;
-    items: Array<{ name: string; status: string; detail: string }>;
+    items: Array<{ name: string; status: string; detail: string; label?: string }>;
   };
   community: {
     initiativeBy?: {
@@ -84,6 +89,7 @@ export type SiteContent = {
   speakerCta: {
     title: string;
     description: string;
+    descriptionEmphasis?: string;
     cta: Action;
   };
   footer: {
@@ -144,6 +150,9 @@ export type JamEvent = {
 export type EventsContent = {
   calendarUrl: string;
   title: string;
+  heading?: string;
+  headingEmphasis?: string;
+  agendaLabel?: string;
   description: string;
   nextEventStrategy: {
     mode: string;
@@ -157,6 +166,7 @@ export type EventsContent = {
   past: {
     title: string;
     description: string;
+    descriptionEmphasis?: string;
     highlightUrl: string;
     items: Array<{
       name: string;
@@ -183,6 +193,7 @@ export type PeopleContent = {
   title: string;
   description: string;
   speakersTitle: string;
+  speakersTitleEmphasis?: string;
   imagePolicy: string;
   speakers: Array<{
     name: string;

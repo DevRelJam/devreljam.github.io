@@ -1,7 +1,8 @@
 {
   "title": "People Who Shaped the Room",
   "description": "Past Jams have brought together DevRel leaders, developer advocates, community builders, program managers, and technical marketing practitioners across the ecosystem.",
-  "speakersTitle": "Featured speakers and moderators",
+  "speakersTitle": "DevRel leaders, advocates & community builders.",
+  "speakersTitleEmphasis": "community builders",
   "speakers": [
     {
       "name": "Annie Mathew",

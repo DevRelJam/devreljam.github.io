@@ -1,7 +1,10 @@
 {
   "calendarUrl": "https://luma.com/devreljam",
-  "title": "Upcoming DevRelJam",
-  "description": "The next Jam is live on Luma. Registration is free and mandatory, with host approval required.",
+  "title": "Up next",
+  "heading": "The next Jam is live on Luma.",
+  "headingEmphasis": "live on Luma",
+  "agendaLabel": "Agenda",
+  "description": "Registration is free and mandatory, with host approval required so the room stays useful.",
   "nextEventStrategy": {
     "mode": "first-future-by-startDate",
     "emptyState": {
@@ -34,7 +37,7 @@
       "time": "6:00 PM - 9:00 PM",
       "timezone": "Singapore Time",
       "location": "Singapore",
-      "status": "Approval required",
+      "status": "Open",
       "description": "Join DevRel practitioners for a focused evening of peer-led sessions, an Ask Me Anything block, and practical conversations about developer advocacy, community, and engagement.",
       "agenda": [
         "Welcome note",
@@ -58,7 +61,7 @@
       },
       "actions": [
         {
-          "label": "Register on Luma",
+          "label": "Register for Singapore",
           "href": "https://luma.com/wnygmi8l",
           "icon": "calendar",
           "variant": "solid"
@@ -74,7 +77,8 @@
   ],
   "past": {
     "title": "Past Jams",
-    "description": "Browse previous DevRelJam editions, agendas, and speaker themes from cities where the community has already gathered.",
+    "description": "Where the room has already gathered.",
+    "descriptionEmphasis": "has already gathered",
     "highlightUrl": "https://www.linkedin.com/posts/yashrajnayak_kubecon-devreljam-developerrelations-ugcPost-7321035973578948610-xde9/",
     "items": [
       {
@@ -166,8 +170,8 @@
       }
     },
     "highlightCta": {
-      "label": "View community highlights",
-      "href": "https://www.linkedin.com/posts/yashrajnayak_kubecon-devreljam-developerrelations-ugcPost-7321035973578948610-xde9/",
+      "label": "Browse Jam repos",
+      "href": "https://github.com/devreljam",
       "icon": "users",
       "variant": "ghost"
     }
